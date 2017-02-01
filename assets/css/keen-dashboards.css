@@ -92,6 +92,12 @@ body.application .return-link:hover,
   position: relative;
 }
 
+.chart-wrapper .chart-map {
+  overflow: hidden;
+  padding: 5px 10px;
+  position: relative;
+}
+
 .chart-wrapper .chart-notes {
   background: #ffffff;
   border-top: 1px solid #e2e2e2;
