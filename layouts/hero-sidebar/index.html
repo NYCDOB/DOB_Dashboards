@@ -45,7 +45,7 @@
           </div>
           <div class="chart-map">
             <div id="grid-1-1">
-		<iframe width="100%" height="650px" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_Permit_Draft/"></iframe>
+		<iframe id='permitMap' width="100%" height="650px" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_Permit_Draft/"></iframe>
 	    </div>
           </div>
 
@@ -183,7 +183,13 @@
     <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
 
   </div>
-
+    <script>
+	function resizeIframe(height)
+	{
+		document.getElementById('permitMap').height = parseInt(height)+60;
+	}
+  </script>
+	  
   <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
