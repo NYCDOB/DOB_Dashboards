@@ -12,10 +12,17 @@
 <style>
 	.chart-waffle {
 		width: 100%;
-		height: 250px;
+		height: 210px;
 		padding: 0;
 		overflow-y: hidden;
 		overflow-x: auto;
+	}
+	.chart-permits-city {
+		width: 100%;
+		height: 210px;
+		padding: 8px;
+		<!-- overflow-y: hidden; -->
+		<!-- overflow-x: auto; -->
 	}
 	.chart-map {
 		width: 100%;
@@ -100,73 +107,59 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-6 col-md-4">
+	
+	<div class="col-sm-6 col-md-6">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Job Type per Year (2011 - 2016)
+            Permit Job Types Citywide (2016)
           </div>
-		  <div class="chart-stage">
-				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobType_2011_2016"></iframe>
-          </div>
-          <div class="chart-notes">
-            On average, A2 job types account for 74% of permits issued and renewed per year. A2 job types for permits issued and renewed have been trending up over the past six years. In 2016 there was a 34% increase in A2 job types for permits issued and renewed compared to 2011. While DM job types account for the least amount of permits issued and renewed for each year of the analysis period, the numbers have been trending up (there was an 90% increase in 2016 compared to 2011). 
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Issued & Renewed per Year (2011 - 2016)
-          </div>
-          <div class="chart-stage">
-				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewed_2011_2016"></iframe>
-          </div>
-          <div class="chart-notes">
-            Permits issued and renewed have been trending up over the past six years. In 2016 there was a 32% increase in permits issued and renewed compared to 2011. While the number of permits issued has been greater than permits renewed for each year of the analysis period, there was a slight decrease in the proportion of issued permits in 2016 (2 percentage points less than in 2015 and in 2011).
+          <div class="chart-waffle">
+				<iframe  width="900px" height="200px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeWaffle_2016"></iframe>
+		  </div>
 
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Job Type per Borough (2011 - 2016)
-          </div>
-          <div class="chart-stage">
-				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeBoros_2011_2016"></iframe>
-          </div>
-          <div class="chart-notes">
-            The greatest proportion of job types within each Boroughs was A2 with Manhattan having the greatest number overall (54% of A2 job types citywide). The greatest number of NB job types issued and renewed occurred in Brooklyn (32% of NB job types citywide). DM job types represent the smallest proportion of job types within each Borough. Queens had the greatest number of DM job types issued and renewed (34% of DM job types citywide).
+          <!-- <div class="chart-notes"> -->
+            <!-- A2 and A3 job types combined accounted for 90% of permits issued and renewed citywide over the analysis time period, while A1 job types accounted for 5%. NB job types accounted for 4% of permits issued and renewed citywide and DM job types accounted for 1%.  -->
 
-          </div>
-        </div>
-      </div>
-<!-- end of three -->
-      <div class="col-sm-6 col-md-4">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Issued & Renewed per Borough (2011 - 2016)
-          </div>
-          <div class="chart-stage">
-				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedBoros_2011_2016"></iframe>
-          </div>
-          <div class="chart-notes">
-            The Borough with the greatest number of permits issued and renewed was Manhattan accounting for 49% of permits issued and renewed citywide. Manhattan had the greatest number of permits issued (49% of permits issued citywide) as well as the greatest number of permits renewed (47% of permits renewed citywide). While Staten Island had the least number of total permits issued and renewed, the proportion of permits that were issued was the greatest out of all Boroughs (73%). 
 
-          </div>
+          <!-- </div> -->
         </div>
-      </div>
+    </div>
+	
+	<div class="col-sm-6">
+        <div class="chart-wrapper">
+		<!-- <div class="chart-title"> -->
+			<!-- Summary of Permit Types Issued and Renewed (2016) -->
+          <!-- <div class="chart-stage"> -->
+				<!-- <iframe width="100%" height="767px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Text"></iframe> -->
+          <!-- </div> -->
+		<div class="chart-title">
+            Summary of Permit Job Types Citywide (2016)
+        </div> 
+		  <div class="chart-permits-city">		
+		  <ul>
+			<li><i><font size="3">A2 and A3 job types</i> combined accounted for nearly 90% of all permits issued and renewed citywide in 2016</font><p><p></li>
+			<li><i><font size="3">A2 job types</i> totaled 122,731 permits citywide in 2016 (74% of permits issued and renewed citywide)</font><p></li>
+			<li><i><font size="3">A3 job types</i> totaled 24,006 permits citywide in 2016 (15% of permits issued and renewed citywide)</font><p></li>
+			<li><i><font size="3">A1 job types</i> accounted for 5% of permits issued and renewed citywide in 2016 (8,570 total permits)</font><p></li>
+			<li><i><font size="3">NB job types</i> accounted for 5% of permits issued and renewed citywide in 2016 (7,526 total permits)</font><p></li>
+			<li><i><font size="3">DM job types</i> accounted for 1% of permits issued and renewed citywide in 2016 (2,252 total permits)</font><p></li>
+		  </ul>
+          </div>
+		<!-- </div> -->
+
+        </div>
+    </div>
 
       <div class="col-sm-6 col-md-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Job Type: Top 10 Community Districts (2011 - 2016)
+            Job Type: Top 10 Community Districts (2016)
           </div>
           <div class="chart-stage">
-				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeTop10CD_2011_2016"></iframe>
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeTop10CD_2016"></iframe>
           </div>
           <div class="chart-notes">
-            CD105 in Manhattan had the greatest overall number of permits issued and renewed and the greatest number of A2 job types citywide. CD503 in Staten Island had he greatest number of NB job type permits citywide. CD407 had the greatest number of DM job type permits citywide.
+            CD105 in Manhattan had the greatest overall number of permits issued and renewed and the greatest number of A2, and A3 job types citywide. While not in the top 10 Community Districts for overall number of permits issued and renewed, CD503 in Staten Island had he greatest number of NB job type permits citywide and CD407 had the greatest number of DM job type permits citywide.
 
           </div>
         </div>
@@ -186,6 +179,21 @@
           </div>
         </div>
       </div>
+	  
+	  <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Job Type per Borough (2000 - 2016)
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeBoros_2000_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            The greatest proportion of job types within each Borough was A2 with Manhattan having the greatest number overall (54% of A2 job types citywide). The greatest number of NB job types issued and renewed occurred in Queens (31% of NB job types citywide). DM job types represent the smallest proportion of job types within each Borough. Queens had the greatest number of DM job types issued and renewed (38% of DM job types citywide).
+
+          </div>
+        </div>
+      </div>
 	
 	<div class="col-sm-6 col-md-6">
         <div class="chart-wrapper">
@@ -196,11 +204,12 @@
 				<!-- <style>.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="DemolitionPermitsDensity2016" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=1c25bbc82b8c469789700f6fe7ea3535&amp;extent=-74.4407,40.4766,-73.4265,40.9264&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe></div> -->
 				<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="DemolitionPermitsDensity2016" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=1c25bbc82b8c469789700f6fe7ea3535&amp;extent=-74.4407,40.4766,-73.4265,40.9264&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
 			</div>
-		</div>
-        <!-- <div class="chart-notes"> -->
-            <!-- Demolition permits were filed in July 2016 for 8 buildings in what is referred to as the "Iron Triangle" located just east of Citi Field in Willets Point, Queens. The demolition of the former auto repair shops began in late July to make room for a mixed-use redevelopment project.   -->
+		
+        <div class="chart-notes">
+            This density map shows concentrations of demolition permits issued in 2016. Darker shades of red indicate higher concentrations of demolition permits. These high concentration areas include midtown Manhattan, Bushwick and South Park Slope in Brooklyn, and Elmhurst and Astoria in Queens. The Community District with the greatest number of demolition permits was 407 in Queens. Willets Point, located in CD407, is highlighted on the map as an example of an area with clustered demolition permits issued (see zoomed-in map to the right).   
 
-        <!-- </div> -->
+        </div>
+	</div>
     </div>
 	
 	<div class="col-sm-6 col-md-6">
@@ -209,7 +218,7 @@
             Demolition Permits Cluster Example: Willets Point, Queens
           </div>
           <div class="chart-stage">
-				<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="WilletsPoint_IronTriangle_DM" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=929bdd0d42c74a10851f3dc7f3f3d506&amp;extent=-73.8449,40.7556,-73.841,40.7573&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
+				<iframe width="100%" height="485" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="WilletsPoint_IronTriangle_DM" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=929bdd0d42c74a10851f3dc7f3f3d506&amp;extent=-73.8449,40.7556,-73.841,40.7573&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
 				
 				
 		  </div>
@@ -220,6 +229,24 @@
         </div>
     </div>
 
+	<div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            New Building Permits Density (2016)
+          </div>
+			<div class="chart-stage">
+				
+				<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="NB Permits Density 2016" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=822150da2a72406cb4266b2c1da1b6ec&amp;extent=-74.4853,40.481,-73.4711,40.9307&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe></div>
+				
+			
+		
+        <div class="chart-notes">
+            This density map shows concentrations of new building permits issued in 2016. Darker shades of green indicate higher concentrations of NB permits. These high concentration areas include Williamsburg and Bushwick in Brooklyn, and Long Island City in Queens. The Community District with the greatest number of NB permits was 503 in Staten Island. The map to the right displays the top 20 development projects (including alterations) in terms of estimated cost for 4th quarter 2016.  
+
+        </div>
+		</div>
+	</div>
+    
 	
 	<div class="col-sm-6 col-md-6">
         <div class="chart-wrapper">
@@ -733,30 +760,30 @@
         </div>
     </div>
 
-	<div class="col-sm-6 col-md-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Job Type Citywide (2011 - 2016)
-          </div>
-          <div class="chart-waffle">
-				<iframe  width="900px" height="200px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeWaffle_2011_2016"></iframe>
-		  </div>
+	<!-- <div class="col-sm-6 col-md-6"> -->
+        <!-- <div class="chart-wrapper"> -->
+          <!-- <div class="chart-title"> -->
+            <!-- Job Type Citywide (2016) -->
+          <!-- </div> -->
+          <!-- <div class="chart-waffle"> -->
+				<!-- <iframe  width="900px" height="200px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeWaffle_2016"></iframe> -->
+		  <!-- </div> -->
 
-          <div class="chart-notes">
-            A2 and A3 job types combined accounted for 90% of permits issued and renewed citywide over the analysis time period, while A1 job types accounted for 5%. NB job types accounted for 4% of permits issued and renewed citywide and DM job types accounted for 1%. 
+          <!-- <div class="chart-notes"> -->
+            <!-- A2 and A3 job types combined accounted for 90% of permits issued and renewed citywide over the analysis time period, while A1 job types accounted for 5%. NB job types accounted for 4% of permits issued and renewed citywide and DM job types accounted for 1%.  -->
 
 
-          </div>
-        </div>
-    </div>
+          <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
 
 	
 </div>
 	
 
 	  
-
 </div>
+
 
 
     <hr>
