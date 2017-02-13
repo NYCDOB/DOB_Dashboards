@@ -1,459 +1,981 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>NYC DOB Permits 2016</title>
-    <link rel="stylesheet" href="style2.css" type="text/css" media="screen" />
+  <title>DOB Development Report 2016</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 </head>
 
-<div id="main-wrapper">
-    
-<div id="metrics">
-    <div id="motor">
-        <h3>Permit Type</h3>
-		<ul>
-			<li data-metric="HC01_EST_VC04" class="selected HC01_EST_VC04">NB</li><!-- Pre-select NB in legend -->
-			<li data-metric="HC01_EST_VC05">ALT1</li>
-			<li data-metric="HC01_EST_VC10">ALT2</li>
-			<li data-metric="HC01_EST_VC11">ALT3</li>
-			<li data-metric="HC01_EST_VC12">DM</li>
-			<!-- <li data-metric="HC01_EST_VC13">SG</li> -->
-			<li data-metric="HC01_EST_VC14">Total Permits</li>
-        </ul>
-	<em>The data represents 2016 permits issued and renewed per Community District. Click on the permit type to turn the layer on/off. Hover mouse over the map to view the number of permits per type and the citywide percentage per Community District.</em>   
-    </div>
-    <div class="clr"></div>
-</div><!-- @end #metrics -->    
-		
+<style>
+	.chart-waffle {
+		width: 100%;
+		height: 250px;
+		padding: 0;
+		overflow-y: hidden;
+		overflow-x: auto;
+	}
+	.chart-map {
+		width: 100%;
+		height: 640px;
+		padding: 5px 25px 5px;
+		overflow-y: hidden;
+		overflow-x: auto;
+		<!-- border-left: 3px solid #e2e2e2; -->
+		<!-- border-right: 3px solid #e2e2e2; -->
+		<!-- border-top: 3px solid #e2e2e2; -->
+		<!-- border-bottom: 3px solid #e2e2e2; -->
+		position: relative;
+	}
+	.dev-table {
+		width: 100%;
+		height: 500px;
+		padding: 0;
+		overflow-y: auto;
+		overflow-x: auto;
+	}
 
-<div id="tooltip" class="tooltip">
-    <h3 class="name"></h3>
-    <div data-metric="HC01_EST_VC04" class="line">
-        <div class="HC01_EST_VC04 symbol"></div> NB 
-        <div class="HC01_EST_VC04_val moe"></div>
-        <div class="HC01_EST_VC04_val val"></div>
-    </div>
-    <div data-metric="HC01_EST_VC05" class="line">
-        <div class="HC01_EST_VC05 symbol"></div> ALT1
-        <div class="HC01_EST_VC05_val moe"></div>
-        <div class="HC01_EST_VC05_val val"></div>
-    </div>
-    <div data-metric="HC01_EST_VC10" class="line">
-        <div class="HC01_EST_VC10 symbol"></div> ALT2
-        <div class="HC01_EST_VC10_val moe"></div>
-        <div class="HC01_EST_VC10_val val"></div>
-    </div>
-	<div data-metric="HC01_EST_VC11" class="line">
-        <div class="HC01_EST_VC11 symbol"></div> ALT3
-        <div class="HC01_EST_VC11_val moe"></div> 
-        <div class="HC01_EST_VC11_val val"></div>
-    </div>
-    <div data-metric="HC01_EST_VC12" class="line">
-        <div class="HC01_EST_VC12 symbol"></div> DM
-        <div class="HC01_EST_VC12_val moe"></div> 
-        <div class="HC01_EST_VC12_val val"></div>
-    </div>
-	<!-- <div data-metric="HC01_EST_VC13" class="line"> -->
-        <!-- <div class="HC01_EST_VC13 symbol"></div> SG -->
-        <!-- <div class="HC01_EST_VC13_val moe"></div> -->
-        <!-- <div class="HC01_EST_VC13_val val"></div> -->
-    <!-- </div> -->
-    <div data-metric="HC01_EST_VC14" class="line">
-        <div class="HC01_EST_VC14 symbol"></div> Total Permits
-        <div class="HC01_EST_VC14_val moe"></div>
-        <div class="HC01_EST_VC14_val val"></div>
-    </div>
-</div>   
-   
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+</style>
 
-<script>
 
-var width = 960,
-    height = 600,
-    center = [width / 2, height / 2],
-    defaultFill = "#e0e0e0";
+<body class="application">
 	
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-brand">
 
-//color ranges for layers
-var baseColors = { 
-    "HC01_EST_VC04": d3.scale.linear().domain([0,110]).range(["#ffffff", "#8dd3c7"]).interpolate(d3.interpolateLab),
-    "HC01_EST_VC05": d3.scale.linear().domain([0,200]).range(["#ffffff", "#fdb462"]).interpolate(d3.interpolateLab),
-    <!-- "HC01_EST_VC10": d3.scale.linear().domain([0,1700]).range(["#ffffff", "#bebada"]).interpolate(d3.interpolateLab), -->
-	"HC01_EST_VC10": d3.scale.linear().domain([0,1700]).range(["#ffffff", "#fb8072"]).interpolate(d3.interpolateLab),
-    "HC01_EST_VC11": d3.scale.linear().domain([0,400]).range(["#ffffff", "#bc80bd"]).interpolate(d3.interpolateLab),
-    "HC01_EST_VC12": d3.scale.linear().domain([0,50]).range(["#ffffff", "#80b1d3"]).interpolate(d3.interpolateLab),
-    <!-- "HC01_EST_VC13": d3.scale.linear().domain([0,50]).range(["#ffffff", "#fdb462"]).interpolate(d3.interpolateLab), -->
-    "HC01_EST_VC14": d3.scale.linear().domain([0,1700]).range(["#ffffff", "#b3de69"]).interpolate(d3.interpolateLab),
-};
+		DOB DEVELOPMENT REPORT 2016
+      </div>
 
-// var opacityScale = d3.scale.linear()
-//     .domain([0, 20])
-//     .range([0, 1]);
+    </div>
+  </div>
 
-// var colorTest = d3.scale.linear()
-//     .domain([0, 20])
-//     .range(["#ffffff", "#8dd3c7"])
-//     .interpolate(d3.interpolateHcl);
+  <div class="container-fluid">
 
-var commuteById = d3.map();
-
-var projection = d3.geo.mercator()
-    .scale(61000)
-	.center( [-73.85,40.71] )
-    .translate([width / 2, height / 2]);
-
-var path = d3.geo.path()
-    .projection(projection);
-
-var zoom = d3.behavior.zoom()
-    .scaleExtent([1, 8])
-    .on("zoom", move);
-
-var svg = d3.select("body #main-wrapper").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .call(zoom);
-	
-
-	
-svg.on("wheel.zoom", null);
-svg.on("mousewheel.zoom", null);
-
-svg.append("rect")
-    .attr("class", "overlay")
-    .attr("width", width)
-    .attr("height", height);
-
-svg.append("svg:image")
-    .attr("xlink:href", "images/progress-anim.gif")
-    .attr("id", "progress-image")
-    .attr("width", 43)
-    .attr("height", 11)
-    .attr("x", width / 2)
-    .attr("y", height / 2);
-    
-var g = svg.append("g");
-
-    
-var tooltip = d3.select("#tooltip")
- .attr("class", "tooltip")
- .style("opacity", 0);
-
- 
-//Pre-select NB permit type in map
-var CURR_SELECT = ["HC01_EST_VC04"];
-
-//Load layer and data
-queue()
-    .defer(d3.json, "data/CD_topoJSON.json")
-    .defer(d3.csv, "data/Permits_2016.csv", typeAndSet)
-    .await(ready);
-
-
-function ready(error, CD_topoJSON) {
-
-    g.append("g")
-        .attr("class", "collection")
-        .selectAll("path")
-          .data(topojson.feature(CD_topoJSON, CD_topoJSON.objects.collection).features)
-        .enter().append("path")
-          // .attr("class", function(d) { return classByGreatest(d.id); })
-          .attr("d", path)
-          
-          .on("mouseover", function(d) {
-               d3.select(this).classed("selected", true);
-               tooltip.transition().duration(100)
-                 .style("opacity", 1)
-               if (d3.event.pageX > (width - 200)) {
-                   tooltip.style("left", (d3.event.pageX - 210) + "px");
-               } else {
-                   tooltip.style("left", (d3.event.pageX + 20) + "px")
-                        .style("top", (d3.event.pageY -30) + "px");
-               }
-               if (d3.event.pageY > (height - 150)) {
-                   tooltip.style("top", (d3.event.pageY -140) + "px");
-               } else {
-                   tooltip.style("top", (d3.event.pageY -30) + "px");
-               }
-               
-               tooltip.select(".name").text(commuteById.get(d.id)['name']);
-               tooltip.select(".HC01_EST_VC04_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC04"]))
-               tooltip.select(".HC01_EST_VC05_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC05"]))
-               tooltip.select(".HC01_EST_VC10_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC10"]))
-               tooltip.select(".HC01_EST_VC11_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC11"]))
-               tooltip.select(".HC01_EST_VC12_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC12"]))
-               //tooltip.select(".HC01_EST_VC13_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC13"]))
-               tooltip.select(".HC01_EST_VC14_val.val").text(d3.round(commuteById.get(d.id)["HC01_EST_VC14"]))
-               
-               tooltip.select(".HC01_EST_VC04_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC04"] + "%")
-               tooltip.select(".HC01_EST_VC05_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC05"] + "%")
-               tooltip.select(".HC01_EST_VC10_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC10"] + "%")
-               tooltip.select(".HC01_EST_VC11_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC11"] + "%")
-               tooltip.select(".HC01_EST_VC12_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC12"] + "%")
-               //tooltip.select(".HC01_EST_VC13_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC13"] + "%")
-               tooltip.select(".HC01_EST_VC14_val.moe").html(commuteById.get(d.id)["HC01_MOE_VC14"] + "%")
-               
-             })
-          .on("mouseout", function() {
-              d3.select(this).classed("selected", false);
-              tooltip.transition().duration(300)
-                .style("opacity", 0);
-              });
-
-   // g.append("path")
-        //.datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-        //.attr("class", "states")
-       // .attr("d", path);
-    
-    updateClasses();
-    
-	// SELECT & VIEW MULTIPLE LAYERS
-    <!-- d3.selectAll("#metrics li") -->
-        <!-- .on("click", function() { -->
-            <!-- var item = d3.select(this); -->
-            <!-- if (item.classed("selected")) { -->
-                <!-- item.attr("class", ""); -->
-                <!-- removeFromArray(CURR_SELECT, item.attr("data-metric")); -->
-                
-            <!-- } else { -->
-                <!-- item.classed("selected " + item.attr("data-metric"), true); -->
-                <!-- CURR_SELECT.push(item.attr("data-metric")); -->
-            <!-- } -->
-            <!-- updateClasses(); -->
-        <!-- }); -->
-
-	// SELECT & VIEW ONE LAYER AT A TIME
-	d3.selectAll("#metrics li")
-        .on("click", function() {
-            var item = d3.select(this);
-            if (item.classed("selected")) { <!-- If clicked element is already selected, clear selection and remove from array
-                item.attr("class", "");
-                removeFromArray(CURR_SELECT, item.attr("data-metric"));
-				
-            } else {
-				var removed = CURR_SELECT.splice(0,7); <!-- Removes all 7 elements from the selection array beginning at index 0
-				d3.selectAll("#metrics li").attr("class", ""); <!-- Clears the selection of all elements by setting "class" = ""
-                item.classed("selected " + item.attr("data-metric"), true); <!-- Select clicked element 
-				CURR_SELECT.push(item.attr("data-metric"));	<!-- Add clicked element to array
-            }
-            updateClasses();
-        });
-	
-	
-
-    
-	// Zoom buttons
-    svg.selectAll(".button")
-        .data(['zoom_in', 'zoom_out'])
-      .enter()
-        .append("g")
-          .attr("id", function(d){return d})
-          .attr("class", "button")
-          .attr({x: 20, width: 20, height: 20})
-        .append("rect")
-            .attr("y", function(d,i) { return 20 + 25*i })
-            .attr({x: 20, width: 20, height: 20})
-    // Plus button
-    svg.select("#zoom_in")
-      .append("line")
-        .attr({x1: 25, y1: 30, x2: 35, y2: 30 })
-        .attr("stroke", "#fff")
-        .attr("stroke-width", "2px");
-    svg.select("#zoom_in")
-      .append("line")
-        .attr({x1: 30, y1: 25, x2: 30, y2: 35 })
-        .attr("stroke", "#fff")
-        .attr("stroke-width", "2px");
-    // Minus button
-    svg.select("#zoom_out")
-      .append("line")
-        .attr({x1: 25, y1: 55, x2: 35, y2: 55 })
-        .attr("stroke", "#fff")
-        .attr("stroke-width", "2px");
-
-
-    svg.selectAll(".button")
-      .on("click", function() {
-          d3.event.preventDefault();
-          
-          var scale = zoom.scale(),
-              extent = zoom.scaleExtent(),
-              translate = zoom.translate(),
-              x = translate[0], y = translate[1],
-              factor = (this.id === 'zoom_in') ? 2 : 1/2,
-              target_scale = scale * factor;
-          
-          var clamped_target_scale = Math.max(extent[0], Math.min(extent[1], target_scale));
-            if (clamped_target_scale != target_scale){
-                target_scale = clamped_target_scale;
-                factor = target_scale / scale;
-            }
-
-            // Center each vector, stretch, then put back
-            x = (x - center[0]) * factor + center[0];
-            y = (y - center[1]) * factor + center[1];
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Permit Types by Community District (2016)
+          </div>
+          <div class="chart-map">
             
-            // Transition to the new view over 350ms
-            d3.transition().duration(350).tween("zoom", function () {
-                var interpolate_scale = d3.interpolate(scale, target_scale),
-                    interpolate_trans = d3.interpolate(translate, [x,y]);
-                return function (t) {
-                    zoom.scale(interpolate_scale(t))
-                        .translate(interpolate_trans(t));
-                    svg.call(zoom.event);
-                };
-            });
-      });
-      
-      svg.select("#progress-image").remove();
-}
-    
-// Add attribute data and convert to number (default is string) 
-function typeAndSet(d) {
-    
-    d.HC01_EST_VC04 = +d.HC01_EST_VC04;
-    d.HC01_EST_VC05 = +d.HC01_EST_VC05;
-    d.HC01_EST_VC10 = +d.HC01_EST_VC10;
-    d.HC01_EST_VC11 = +d.HC01_EST_VC11;
-    d.HC01_EST_VC12 = +d.HC01_EST_VC12;
-    //d.HC01_EST_VC13 = +d.HC01_EST_VC13;
-    d.HC01_EST_VC14 = +d.HC01_EST_VC14;
-    
-    d.HC01_MOE_VC04 = +d.HC01_MOE_VC04;
-    d.HC01_MOE_VC05 = +d.HC01_MOE_VC05;
-    d.HC01_MOE_VC10 = +d.HC01_MOE_VC10;
-    d.HC01_MOE_VC11 = +d.HC01_MOE_VC11;
-    d.HC01_MOE_VC12 = +d.HC01_MOE_VC12;
-    //d.HC01_MOE_VC13 = +d.HC01_MOE_VC13;
-    d.HC01_MOE_VC14 = +d.HC01_MOE_VC14;
-    commuteById.set(d.FIPS, d);
-    
-}
+				<iframe width="800px" height="630px" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_Permit_Draft/" onload="this.style.height=this.contentDocument.body.scrollHeight + 'px';"></iframe>
+					
+            
+          </div>
 
-function updateClasses() {
-    if (CURR_SELECT.length > 0) {
-        svg.selectAll(".collection path")
-            .attr("fill", function(d) { return colorByGreatest(d.id) });
-          // .attr("class", function(d) { return classByGreatest(d.id); })
-          // .attr("opacity", function(d) { return opacityByGreatest(d.id); });
-    } else {
-        svg.selectAll(".collection path")
-          .attr("class", "")
-          .attr("fill", defaultFill);
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+		<!-- <div class="chart-title"> -->
+			<!-- Summary of Permit Types Issued and Renewed (2016) -->
+          <!-- <div class="chart-stage"> -->
+				<!-- <iframe width="100%" height="767px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Text"></iframe> -->
+          <!-- </div> -->
+		<div class="chart-title">
+            Summary of Permit Types Issued & Renewed (2016)
+        </div> 
+		  <div class="chart-permits">
+            <u><font size="3">NB Permits</u></font><p><p>		
+			<i><font size="3">Brooklyn</i> had the greatest number of NB permits issued and renewed in 2016 (2,604 total, 35% citywide). The Community District with the greatest number of NB permits issued and renewed in 2016 was <i>CD503</i> in Staten Island (518 total, 7% citywide)</font><p>
+			<u><font size="3">ALT1 Permits</u></font><p>
+			<i><font size="3">Brooklyn</i> had the greatest number of ALT1 permits issued and renewed in 2016 (2,975 total, 35% citywide). The Community District with the greatest number of ALT1 permits issued and renewed in 2016 was <i>CD407</i> in Queens (404 total, 5% citywide)</font><p>
+			<u><font size="3">ALT2 Permits</u></font><p>
+			<i><font size="3">Manhattan</i> had the greatest number of ALT2 permits issued and renewed in 2016 (61,187 total, 50% citywide). The Community District with the greatest number of ALT2 permits issued and renewed in 2016 was <i>CD105</i> in Manhattan (14,884 total, 12% citywide)</font><p>
+			<u><font size="3">ALT3 Permits</u></font><p>
+			<i><font size="3">Manhattan</i> had the greatest number of ALT3 permits issued and renewed in 2016 (10,669 total, 44% citywide). The Community District with the greatest number of ALT3 permits issued and renewed in 2016 was <i>CD105</i> in Manhattan (1,778 total, 7% citywide)</font><p>
+			<u><font size="3">DM Permits</u></font><p>
+			<i><font size="3">Brooklyn</i> had the greatest number of DM permits issued and renewed in 2016 (862 total, 38% citywide). The Community District with the greatest number of DM permits issued and renewed in 2016 was <i>CD407</i> in Queens (135 total, 6% citywide)</font><p>
+			<u><font size="3">Total Permits</u></font><p>
+			<i><font size="3">Manhattan</i> had the greatest number of total permits issued and renewed in 2016 (75,109 total, 45% citywide). The Community District with the greatest number of total permits issued and renewed in 2016 was <i>CD105</i> in Manhattan (17,204 total, 10% citywide)</font><p> 
+          </div>
+		<!-- </div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Job Type per Year (2011 - 2016)
+          </div>
+		  <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobType_2011_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            On average, A2 job types account for 74% of permits issued and renewed per year. A2 job types for permits issued and renewed have been trending up over the past six years. In 2016 there was a 34% increase in A2 job types for permits issued and renewed compared to 2011. While DM job types account for the least amount of permits issued and renewed for each year of the analysis period, the numbers have been trending up (there was an 90% increase in 2016 compared to 2011). 
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Issued & Renewed per Year (2011 - 2016)
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewed_2011_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            Permits issued and renewed have been trending up over the past six years. In 2016 there was a 32% increase in permits issued and renewed compared to 2011. While the number of permits issued has been greater than permits renewed for each year of the analysis period, there was a slight decrease in the proportion of issued permits in 2016 (2 percentage points less than in 2015 and in 2011).
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Job Type per Borough (2011 - 2016)
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeBoros_2011_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            The greatest proportion of job types within each Boroughs was A2 with Manhattan having the greatest number overall (54% of A2 job types citywide). The greatest number of NB job types issued and renewed occurred in Brooklyn (32% of NB job types citywide). DM job types represent the smallest proportion of job types within each Borough. Queens had the greatest number of DM job types issued and renewed (34% of DM job types citywide).
+
+          </div>
+        </div>
+      </div>
+<!-- end of three -->
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Issued & Renewed per Borough (2011 - 2016)
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedBoros_2011_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            The Borough with the greatest number of permits issued and renewed was Manhattan accounting for 49% of permits issued and renewed citywide. Manhattan had the greatest number of permits issued (49% of permits issued citywide) as well as the greatest number of permits renewed (47% of permits renewed citywide). While Staten Island had the least number of total permits issued and renewed, the proportion of permits that were issued was the greatest out of all Boroughs (73%). 
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Job Type: Top 10 Community Districts (2011 - 2016)
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeTop10CD_2011_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            CD105 in Manhattan had the greatest overall number of permits issued and renewed and the greatest number of A2 job types citywide. CD503 in Staten Island had he greatest number of NB job type permits citywide. CD407 had the greatest number of DM job type permits citywide.
+
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Permits Time Series (2000 - 2016)
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobType_2000_2016"></iframe>
+          </div>
+          <div class="chart-notes">
+            The greatest year-to-year increase in total initial and renewed permits occurred from 2003 to 2004.  During that time New Building permits increased by 20% and Demolitions increased by 27%.  This upward surge in permitting activity continued through 2005, but was followed by a six year period of declining New Building and Demolition permits which both dropped almost 70%.  However, since 2013, New Building and Demolition permits have again steadily increased by 40%. The overwhelming majority of permits issued since 2000 are for ALT 2 permits which are for minor alterations in which the use or occupancy of a facility does not change.
+
+          </div>
+        </div>
+      </div>
+	
+	<div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Demolition Permits Density (2016)
+          </div>
+			<div class="chart-stage">
+				<!-- <style>.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="DemolitionPermitsDensity2016" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=1c25bbc82b8c469789700f6fe7ea3535&amp;extent=-74.4407,40.4766,-73.4265,40.9264&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe></div> -->
+				<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="DemolitionPermitsDensity2016" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=1c25bbc82b8c469789700f6fe7ea3535&amp;extent=-74.4407,40.4766,-73.4265,40.9264&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
+			</div>
+		</div>
+        <!-- <div class="chart-notes"> -->
+            <!-- Demolition permits were filed in July 2016 for 8 buildings in what is referred to as the "Iron Triangle" located just east of Citi Field in Willets Point, Queens. The demolition of the former auto repair shops began in late July to make room for a mixed-use redevelopment project.   -->
+
+        <!-- </div> -->
+    </div>
+	
+	<div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Demolition Permits Cluster Example: Willets Point, Queens
+          </div>
+          <div class="chart-stage">
+				<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="WilletsPoint_IronTriangle_DM" src="https://nycdob.maps.arcgis.com/apps/Embed/index.html?webmap=929bdd0d42c74a10851f3dc7f3f3d506&amp;extent=-73.8449,40.7556,-73.841,40.7573&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
+				
+				
+		  </div>
+          <div class="chart-notes">
+            Demolition permits were filed in July 2016 for 8 buildings in what is referred to as the "Iron Triangle" located just east of Citi Field in Willets Point, Queens. The demolition of the former auto repair shops began in late July to make room for a mixed-use redevelopment project.  
+
+          </div>
+        </div>
+    </div>
+
+	
+	<div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+			<div class="chart-title">
+				Top 20 Development Projects (4th Quarter 2016)
+			</div>
+			<div class="chart-stage">
+				<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="WilletsPoint_IronTriangle_DM" src="https://nycdob.github.io/Maps/Top20_Dev2016"></iframe>
+				
+				
+			</div>
+				<style type="text/css">
+				td
+				{
+					padding:0 15px 0 15px;
+				}
+				</style>
+				
+				<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+					<div class="dev-table">
+						<table class="MsoNormalTable" border="1" width="100%">
+
+							<tbody>
+								<tr>
+
+									<td colspan="5">
+										 <font size="4"><strong><span>Significant Development Projects Approved between 9/1/2016 and 12/31/2016</span></strong></font>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <em><span>Borough</span></em>
+										
+									</td>
+									<td>
+										 <em><span>Address</span></em>
+										
+									</td>
+									<td>
+										 <em><span>Job Type</span></em>
+										
+									</td>
+									<td>
+										 <em><span>Description</span></em>
+										
+									</td>
+									<td>
+										 <em><span>Estimated Cost</span></em>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Bronx</span>
+										
+									</td>
+									<td>
+										 <span>100A RODMANS NECK PATH</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>FACTORY/INDUSTRIAL: LOW HAZARD</span>
+										
+									</td>
+									<td>
+										 <span>$740M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Manhattan</span>
+										
+									</td>
+									<td>
+										 <span>1 WALL STREET</span>
+										
+									</td>
+									<td>
+										 <span>A1</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$444M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Manhattan</span>
+										
+									</td>
+									<td>
+										 <span>400 WEST 61 STREET</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$166M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>23-03 44TH ROAD</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>BUSINESS</span>
+										
+									</td>
+									<td>
+										 <span>$161M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Staten Island</span>
+										
+									</td>
+									<td>
+										 <span>586 GULF AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>STORAGE: MODERATE HAZARD</span>
+										
+									</td>
+									<td>
+										 <span>$143M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Brooklyn</span>
+										
+									</td>
+									<td>
+										 <span>63 FLUSHING AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>BUSINESS</span>
+										
+									</td>
+									<td>
+										 <span>$90M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>147-22 ARCHER AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$89M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Manhattan</span>
+										
+									</td>
+									<td>
+										 <span>22 THAMES STREET</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$68M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Brooklyn</span>
+										
+									</td>
+									<td>
+										 <span>1 CLINTON STREET</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$60M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>46-06 57TH AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>STORAGE: MODERATE HAZARD</span>
+										
+									</td>
+									<td>
+										 <span>$53M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>134-03 35TH AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$50M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Brooklyn</span>
+										
+									</td>
+									<td>
+										 <span>911 ERSKINE STREET</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$45M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>133-55 41 AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$42M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Manhattan</span>
+										
+									</td>
+									<td>
+										 <span>15 EAST 57TH STREET</span>
+										
+									</td>
+									<td>
+										 <span>A1</span>
+										
+									</td>
+									<td>
+										 <span>BUSINESS</span>
+										
+									</td>
+									<td>
+										 <span>$38M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Bronx</span>
+										
+									</td>
+									<td>
+										 <span>1520 STORY AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$35M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Staten Island</span>
+										
+									</td>
+									<td>
+										 <span>35 RICHMOND TERRACE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: HOTELS, DORMITORIES</span>
+										
+									</td>
+									<td>
+										 <span>$33M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>22-12 JACKSON AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$33M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Queens</span>
+										
+									</td>
+									<td>
+										 <span>89-48 164TH STREET</span>
+										
+									</td>
+									<td>
+										 <span>NB</span>
+										
+									</td>
+									<td>
+										 <span>RESIDENTIAL: APARTMENT HOUSES</span>
+										
+									</td>
+									<td>
+										 <span>$31M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Manhattan</span>
+										
+									</td>
+									<td>
+										 <span>11 MADISON AVENUE</span>
+										
+									</td>
+									<td>
+										 <span>A2</span>
+										
+									</td>
+									<td>
+										 <span>BUSINESS</span>
+										
+									</td>
+									<td>
+										 <span>$30M</span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 <span>Manhattan</span>
+										
+									</td>
+									<td>
+										 <span>1530 BROADWAY</span>
+										
+									</td>
+									<td>
+										 <span>A2</span>
+										
+									</td>
+									<td>
+										 <span>MERCANTILE</span>
+										
+									</td>
+									<td>
+										 <span>$29M</span>
+										
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<p>
+							<a class="btn" href="#"></a>
+						</p>
+					</div>
+				</div>
+				</div>
+			</div>
+
+				<script src="js/jquery.min.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/scripts.js"></script>
+			  </body>
+			</html>
+        </div>
+    </div>
+
+	<div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Job Type Citywide (2011 - 2016)
+          </div>
+          <div class="chart-waffle">
+				<iframe  width="900px" height="200px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/PermitsIssuedRenewedByJobTypeWaffle_2011_2016"></iframe>
+		  </div>
+
+          <div class="chart-notes">
+            A2 and A3 job types combined accounted for 90% of permits issued and renewed citywide over the analysis time period, while A1 job types accounted for 5%. NB job types accounted for 4% of permits issued and renewed citywide and DM job types accounted for 1%. 
+
+
+          </div>
+        </div>
+    </div>
+
+	
+</div>
+	
+
+	  
+
+</div>
+
+
+    <hr>
+
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
+  </div>
+  
+
+
+  <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="../../assets/lib/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
+  <script type="text/javascript" src="../../assets/js/meta.js"></script>
+<script>
+var client = new Keen({
+  projectId: "5368fa5436bf5a5623000000",
+  readKey: "3f324dcb5636316d6865ab0ebbbbc725224c7f8f3e8899c7733439965d6d4a2c7f13bf7765458790bd50ec76b4361687f51cf626314585dc246bb51aeb455c0a1dd6ce77a993d9c953c5fc554d1d3530ca5d17bdc6d1333ef3d8146a990c79435bb2c7d936f259a22647a75407921056"
+});
+
+Keen.ready(function(){
+
+  // ----------------------------------------
+  // Sample one
+  // ----------------------------------------
+  var pageviews_timeline = new Keen.Query("count", {
+    eventCollection: "pageviews",
+    interval: "hourly",
+    groupBy: "user.device_info.browser.family",
+    timeframe: {
+      start: "2014-05-04T00:00:00.000Z",
+      end: "2014-05-05T00:00:00.000Z"
     }
-
-}
-
-function colorByGreatest(FIPS) {
-    
-    var countyObject = commuteById.get(FIPS);
-
-    if (typeof countyObject !== "undefined") {
-        var values = [];
-        for (var i = 0; i < CURR_SELECT.length; i++) {
-            values.push(countyObject[CURR_SELECT[i]]);
-        }
-        var maxValue = d3.max(values);
-        var maxIndex = values.indexOf(maxValue);
-        var metric = CURR_SELECT[maxIndex];
-        return baseColors[metric](maxValue);
-    } 
-    
-    else {
-        return "#ffffff";
+  });
+  client.draw(pageviews_timeline, document.getElementById("chart-01"), {
+    chartType: "areachart",
+    title: false,
+    height: 250,
+    width: "auto",
+    chartOptions: {
+      chartArea: {
+        height: "85%",
+        left: "5%",
+        top: "5%",
+        width: "80%"
+      },
+      isStacked: true
     }
-    
-}
+  });
+  // ----------------------------------------
+  //  End sample one
+  // ----------------------------------------
 
 
-// function classByGreatest(FIPS) {
-//     var countyObject = commuteById.get(FIPS);
-// 
-//     if (typeof countyObject !== "undefined") {
-//         var values = [];
-//         for (var i = 0; i < CURR_SELECT.length; i++) {
-//             values.push(countyObject[CURR_SELECT[i]]);
-//         }
-//         var maxIndex = values.indexOf(d3.max(values));
-//         return CURR_SELECT[maxIndex];
-//     } 
-//     
-//     else {
-//         return "NODATA";
-//     }
-// }
-
-// function opacityByGreatest(FIPS) {
-//     var countyObject = commuteById.get(FIPS);
-// 
-//     if (typeof countyObject !== "undefined") {
-//         var values = [];
-//         for (var i = 0; i < CURR_SELECT.length; i++) {
-//             values.push(countyObject[CURR_SELECT[i]]);
-//         }
-//         return opacityScale(d3.max(values));
-//     } 
-//     
-//     else {
-//         return 0;
-//     }
-// }
-
-function zoomIn() {
-    zoom.scale(zoom.scale()*2);
-    move();
-}
-
-function move() {
-  var t = d3.event.translate,
-      s = d3.event.scale;
-  t[0] = Math.min(width * (s - 1), Math.max(width * (1 - s), t[0]));
-  t[1] = Math.min(height * (s - 1), Math.max(height * (1 - s), t[1]));
-  zoom.translate(t);
-  g.style("stroke-width", 1 / s).attr("transform", "translate(" + t + ")scale(" + s + ")");
-}
-
-function clicked(d) {
-  var x, y, k;
-
-  if (d && centered !== d) {
-    var centroid = path.centroid(d);
-    x = centroid[0];
-    y = centroid[1];
-    k = 4;
-    centered = d;
-  } else {
-    x = width / 2;
-    y = height / 2;
-    k = 1;
-    centered = null;
-  }
-
-  g.selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
-
-  g.transition()
-      .duration(750)
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-      .style("stroke-width", 1.5 / k + "px");
-}
-
-
-
-function removeFromArray(arr) {
-    var what, a = arguments, L = a.length, ax;
-    while (L > 1 && arr.length) {
-        what = a[--L];
-        while ((ax= arr.indexOf(what)) !== -1) {
-            arr.splice(ax, 1);
-        }
+  // ----------------------------------------
+  // Sample two
+  // ----------------------------------------
+  var pageviews_static = new Keen.Query("count", {
+    eventCollection: "pageviews",
+    groupBy: "user.device_info.browser.family",
+    timeframe: {
+      start: "2014-05-01T00:00:00.000Z",
+      end: "2014-05-05T00:00:00.000Z"
     }
-    return arr;
-}
+  });
+  client.draw(pageviews_static, document.getElementById("chart-02"), {
+    chartType: "piechart",
+    title: false,
+    height: 250,
+    width: "auto",
+    chartOptions: {
+      chartArea: {
+        height: "85%",
+        left: "5%",
+        top: "5%",
+        width: "100%"
+      },
+      pieHole: .4
+    }
+  });
+  // ----------------------------------------
+  // End sample two
+  // ----------------------------------------
 
+  // ----------------------------------------
+  // Sample three
+  // ----------------------------------------
+  var impressions_timeline = new Keen.Query("count", {
+    eventCollection: "impressions",
+    groupBy: "ad.advertiser",
+    interval: "hourly",
+    timeframe: {
+      start: "2014-05-04T00:00:00.000Z",
+      end: "2014-05-05T00:00:00.000Z"
+    }
+  });
+  client.draw(impressions_timeline, document.getElementById("chart-03"), {
+    chartType: "columnchart",
+    title: false,
+    height: 250,
+    width: "auto",
+    chartOptions: {
+      chartArea: {
+        height: "75%",
+        left: "10%",
+        top: "5%",
+        width: "60%"
+      },
+      bar: {
+        groupWidth: "85%"
+      },
+      isStacked: true
+    }
+  });
+  // ----------------------------------------
+  // End sample three
+  // ----------------------------------------
 
-d3.select(self.frameElement).style("height", height + "px");
+  // ----------------------------------------
+  // Sample four
+  // ----------------------------------------
+  var impressions_timeline_by_device = new Keen.Query("count", {
+    eventCollection: "impressions",
+    groupBy: "user.device_info.device.family",
+    interval: "hourly",
+    timeframe: {
+      start: "2014-05-04T00:00:00.000Z",
+      end: "2014-05-05T00:00:00.000Z"
+    }
+  });
+  client.draw(impressions_timeline_by_device, document.getElementById("chart-04"), {
+    chartType: "columnchart",
+    title: false,
+    height: 250,
+    width: "auto",
+    chartOptions: {
+      chartArea: {
+        height: "75%",
+        left: "10%",
+        top: "5%",
+        width: "60%"
+      },
+      bar: {
+        groupWidth: "85%"
+      },
+      isStacked: true
+    }
+  });
+  // ----------------------------------------
+  // End sample four
+  // ----------------------------------------
 
+  // ----------------------------------------
+  // Sample five
+  // ----------------------------------------
+  var impressions_timeline_by_country = new Keen.Query("count", {
+    eventCollection: "impressions",
+    groupBy: "user.geo_info.country",
+    interval: "hourly",
+    timeframe: {
+      start: "2014-05-04T00:00:00.000Z",
+      end: "2014-05-05T00:00:00.000Z"
+    }
+  });
+  client.draw(impressions_timeline_by_country, document.getElementById("chart-05"), {
+    chartType: "columnchart",
+    title: false,
+    height: 250,
+    width: "auto",
+    chartOptions: {
+      chartArea: {
+        height: "75%",
+        left: "10%",
+        top: "5%",
+        width: "60%"
+      },
+      bar: {
+        groupWidth: "85%"
+      },
+      isStacked: true
+    }
+  });
+  // ----------------------------------------
+  // End sample five
+  // ----------------------------------------
+  var impressions_timeline_by_country = new Keen.Query("count", {
+    eventCollection: "impressions",
+    groupBy: "user.geo_info.country",
+    interval: "hourly",
+    timeframe: {
+      start: "2014-05-04T00:00:00.000Z",
+      end: "2014-05-05T00:00:00.000Z"
+    }
+  });
+  client.draw(impressions_timeline_by_country, document.getElementById("chart-06"), {
+    chartType: "columnchart",
+    title: false,
+    height: 250,
+    width: "auto",
+    chartOptions: {
+      chartArea: {
+        height: "75%",
+        left: "10%",
+        top: "5%",
+        width: "60%"
+      },
+      bar: {
+        groupWidth: "85%"
+      },
+      isStacked: true
+    }
+  });
+});
 </script>
+</body>
+</html>
