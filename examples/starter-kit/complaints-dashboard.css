@@ -118,6 +118,7 @@ body.application .return-link:hover,
   width: 100%;
   position: relative;
   padding: 5px 10px;
+  overflow: hidden;
 }
 .col-sm-3point5 {
   margin-left: -14px;
