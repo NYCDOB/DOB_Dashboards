@@ -1,144 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard Starter UI, by Keen IO</title>
+  <title>DOB Complaints</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
   <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  <link rel="stylesheet" type="text/css" href="../../examples/starter-kit/complaints-dashboard.css" />
 </head>
 <body class="application">
 
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="navbar-brand" href="./">Dashboard Starter UI</a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-left">
-          <li><a href="https://keen.io">Home</a></li>
-          <li><a href="https://keen.io/team">Team</a></li>
-          <li><a href="https://github.com/keenlabs/dashboards/tree/gh-pages/examples/starter-kit">Source</a></li>
-          <li><a href="https://groups.google.com/forum/#!forum/keen-io-devs">Community</a></li><li><a href="http://stackoverflow.com/questions/tagged/keen-io?sort=newest&pageSize=15">Technical Support</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
   <div class="container-fluid">
     <div class="row">
-
-      <div class="col-sm-8">
+      <div class="col-sm-3">
         <div class="chart-wrapper">
-          <div class="chart-title">
-            Pageviews by browser (past 24 hours)
-          </div>
-          <div class="chart-stage">
-            <div id="chart-01"></div>
-          </div>
-          <div class="chart-notes">
-            This is a sample text region to describe this chart.
-          </div>
+          <img data-src="holder.js/100%x50/white">
         </div>
       </div>
-
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <div class="chart-wrapper">
-          <div class="chart-title">
-            Pageviews by browser (past 5 days)
-          </div>
-          <div class="chart-stage">
-            <div id="chart-02"></div>
-          </div>
-          <div class="chart-notes">
-            Notes go down here
-          </div>
+          <img data-src="holder.js/100%x50/white">
         </div>
       </div>
-
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <img data-src="holder.js/100%x50/white">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <img data-src="holder.js/100%x50/white">
+        </div>
+      </div>
     </div>
-
-
+	
     <div class="row">
 
-      <div class="col-sm-4">
+      <div class="col-sm-9">
+        <div class="chart-wrapper">
+			<div class="chart-map">
+				<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="DemolitionPermitsDensity2016" src="https://nycdob.github.io/D3_DM_TimeSeries/NB_Density_TimeSeries"></iframe>
+			</div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Impressions by advertiser
+            Citywide Stats by Month
+          </div>
+          <div class="chart-stage2">
+            <iframe width="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Permits_CD_Top10"></iframe>
+          </div>
+        </div>
+		<div class="chart-wrapper">
+          <div class="chart-stage2">
+            <iframe width="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Permits_CD_Top10"></iframe>
+          </div>
+        </div>
+		<div class="chart-wrapper">
+          <div class="chart-stage2">
+            <iframe width="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Permits_CD_Top10"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row2">
+
+      <div class="col-sm-3point5">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Total Complaints by Borough
           </div>
           <div class="chart-stage">
-            <div id="chart-03"></div>
-          </div>
-          <div class="chart-notes">
-            Notes go down here
+            <iframe width="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Permits_CD_Top10"></iframe>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-3point5">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Impressions by device
+            Top 10 Community Districts with Most Complaints
           </div>
           <div class="chart-stage">
-            <div id="chart-04"></div>
-          </div>
-          <div class="chart-notes">
-            Notes go down here
+            <iframe width="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Permits_CD_Top10_070116_063017"></iframe>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-3-bottom">
         <div class="chart-wrapper">
-          <div class="chart-title">
-            Impressions by country
-          </div>
-          <div class="chart-stage">
-            <div id="chart-05"></div>
-          </div>
-          <div class="chart-notes">
-            Notes go down here
+          <div class="chart-stage3">
+            <iframe width="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/Permits_CD_Top10"></iframe>
           </div>
         </div>
       </div>
 
     </div>
-
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <img data-src="holder.js/100%x150/white">
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <img data-src="holder.js/100%x150/white">
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <img data-src="holder.js/100%x150/white">
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <img data-src="holder.js/100%x150/white">
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
 
   </div>
 
