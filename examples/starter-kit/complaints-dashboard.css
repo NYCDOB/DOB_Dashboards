@@ -103,6 +103,7 @@ body.application .return-link:hover,
   padding: 5px 10px;
   position: relative;
   height: 205px;
+  /* height: 167px; */
   width: 100%;
 
 }
@@ -113,6 +114,15 @@ body.application .return-link:hover,
   font-size: 12px;
   padding: 8px 10px 5px;
 }
+/* .chart-wrapper .chart-permits { */
+  /* background: #ffffff; */
+  /* border-top: 1px solid #d7d7d7; */
+  /* color: #666; */
+  /* overflow: hidden; */
+  /* padding: 7px 10px 4px; */
+  /* position: relative; */
+/* } */
+
 .chart-wrapper .chart-map {
   height: 650px;
   width: 100%;
@@ -126,10 +136,14 @@ body.application .return-link:hover,
   width: 38.05%;
   float: left;
 }
+
 .col-sm-3-bottom {
-  float: left;
-  width: 23.794%
+  margin: 0px 0px -15px -15px;
+  display: inline-block;
+  width: 25.4%;
 }
+
 .row2 {
-	display: inline;
+  white-space: nowrap;
 }
+
