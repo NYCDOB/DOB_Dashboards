@@ -3,10 +3,7 @@
 <head>
   <title>Active Major Construction</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-  <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
-
 </head>
 <style>
 	.navbar-brand-heading {
@@ -20,62 +17,36 @@
 		font-size: 20px;
 		font-weight: bold;
 		font-style: italic;
-		color: #002878;	
+		color: #002878;
 		font-family: 'Open Sans', sans-serif;
 		font-family: 'Roboto', sans-serif;	
 	}
+	.small text-muted {
+		font-size: 10px;
+		color: black;
+		font-family: 'Open Sans', sans-serif;
+		font-family: 'Roboto', sans-serif;
+	}
 	body {
-		background-color: white;	
+		background-color: white;
 	}
 </style>
-<body class="application">
-
-
-    <div class="container-fluid">
-      <div class="navbar-brand-heading">
+<body>
+	<div class="navbar-brand-heading">
 		ACTIVE MAJOR CONSTRUCTION
-      </div>
-    </div>
-
-
-    <div class="container-fluid">
-      <div class="navbar-brand-subheading">
+	</div>
+	<div class="navbar-brand-subheading">
 		AS OF <span id="today"></span>
-      </div>
-    </div>
-
-  
-  <hr>
-
-<div class="container-fluid">
-    <div class="row">
-
-      <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-stage">
-            <iframe width="100%" height="820px" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_ActiveB_AvgAge_CDs/"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-
+	</div>
 	<hr>
+	<div class="chart-stage">
+		<iframe width="100%" height="820px" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_ActiveB_AvgAge_CDs/"></iframe>
+	</div>
+	<hr>
+	<p class="small text-muted">Built by DOB Analytics </p>
 
-    <p class="small text-muted">Built by DOB Analytics </p>
 
-</div>
-
-  <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script type="text/javascript" src="../../assets/lib/holderjs/holder.js"></script>
-  <script>
-    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
-  </script>
-
-  <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
-  <script type="text/javascript" src="../../assets/js/meta.js"></script>
-  <script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <script>
 	var today = new Date();
 	var dd = today.getDate();
