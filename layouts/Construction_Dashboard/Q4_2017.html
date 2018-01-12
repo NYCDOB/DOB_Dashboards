@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <script src="https://d3js.org/d3.v3.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <style>
@@ -131,12 +131,19 @@
 		</div>  
 		<div class="col-sm-6 col-md-4">
 			<div class="chart-wrapper">
+			  <!-- <div class="chart-title"> -->
+				<!-- NB & A1 Total Square Footage (Q1 2000 - Q4 2017) -->
+			  <!-- </div> -->
 			  <div class="chart-title">
-				NB & A1 Total Square Footage (Q1 2000 - Q4 2017)
+				NB & A1 (Q1 2000 - Q4 2017) <a href="https://nycdob.github.io/NVD3_DOB/examples/TotalSQFT_NB_A1_Q12000_Q42017" target="NBA1">Square Feet</a> |
+						<a href="https://nycdob.github.io/NVD3_DOB/examples/ProposedDwellingUnits_NB_A1_Q12000_Q42017" target="NBA1">Proposed Dwelling Units</a>
 			  </div>
 			  <div class="chart-stage">
-					<iframe width="100%" height="350px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/TotalSQFT_NB_A1_Q12000_Q42017"></iframe>
+					<iframe width="100%" height="350px" frameborder="0" scrolling="no" id="show" name="NBA1"></iframe>	
 			  </div>
+        <!-- <div id="show_wrapper"><iframe id="show"></iframe></div> -->
+		<!-- <div id="example_options" style="visibility: hidden;"></div>			   -->
+		
 			  <!-- <div class="chart-notes"> -->
 				<!-- In 2009 there was a 68% reduction in New Building square footage from the previous year. The 2008 economic crisis can be attributed toward this decline in New Building construction. In 2015 there was a 142% increase in New Building square footage from the previous year. This spike can be attributed to the 2015 expiration of a tax benefit (421-a) for new construction. -->
 
@@ -163,10 +170,10 @@
 		<div class="col-sm-6 col-md-6">
 			<div class="chart-wrapper">
 				<div class="chart-title">
-					Top 20 Development Projects (Q4 2017)
+					Top 20 Development Projects (Q3 2017)
 				</div>
 					<div class="chart-stage" style="overflow-y:hidden; padding:7px; height:640px";>
-						<iframe width="100%" height="626" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="" src="https://timothymartin76.carto.com/builder/983279be-0f5a-4366-9b83-7224be099eb0/embed"></iframe>
+						<iframe width="100%" height="626" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="WilletsPoint_IronTriangle_DM" src="https://nycdob.github.io/Maps/Top20_Q32017"></iframe>
 						<!-- <div class="chart-notes"> -->
 							<!-- This map shows the top 20 approved NB and A1 permits issued with the highest estimated cost in the 4th quarter of 2016. A 10,000 square-foot training facility at 100A Rodmans Neck Path in the Bronx was the largest development project during this period with an estimated cost of $740 million. Construction costs are self-reported by the applicant. -->
 						<!-- </div>		 -->
@@ -332,392 +339,6 @@
 							This map shows the top 20 approved NB and A1 permits issued with the highest estimated cost in the 4th quarter of 2016. A 10,000 square-foot training facility at 100A Rodmans Neck Path in the Bronx was the largest development project during this period with an estimated cost of $740 million. Construction costs are self-reported by the applicant.
 						</div>		
 					</div>
-			<!-- <style type="text/css"> -->
-			<!-- td -->
-			<!-- { -->
-				<!-- padding:0 15px 0 15px; -->
-			<!-- } -->
-			<!-- </style>					 -->
-				<!-- <div class="container-fluid"> -->
-					<!-- <div class="row"> -->
-						<!-- <div class="col-md-12"> -->
-							<!-- <div class="dev-table"> -->
-								<!-- <table class="MsoNormalTable" border="1" width="100%"> -->
-									<!-- <tbody> -->
-										<!-- <tr> -->
-											<!-- <td colspan="5"> -->
-												 <!-- <font size="4"><strong><span>Significant Development Projects Approved between 9/1/2016 and 12/31/2016</span></strong></font>	 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <em><span>Borough</span></em> -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <em><span>Address</span></em> -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <em><span>Job Type</span></em>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <em><span>Description</span></em> -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <em><span>Estimated Cost</span></em> -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Bronx</span> -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>100A RODMANS NECK PATH</span> -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span> -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>FACTORY/INDUSTRIAL: LOW HAZARD</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$740M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Manhattan</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>1 WALL STREET</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>A1</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$444M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Manhattan</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>400 WEST 61 STREET</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$166M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>23-03 44TH ROAD</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>BUSINESS</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$161M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Staten Island</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>586 GULF AVENUE</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>STORAGE: MODERATE HAZARD</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$143M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Brooklyn</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>63 FLUSHING AVENUE</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>BUSINESS</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$90M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>147-22 ARCHER AVENUE</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$89M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Manhattan</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>22 THAMES STREET</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$68M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Brooklyn</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>1 CLINTON STREET</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$60M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>46-06 57TH AVENUE</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>STORAGE: MODERATE HAZARD</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$53M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>									 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>134-03 35TH AVENUE</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$50M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Brooklyn</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>911 ERSKINE STREET</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$45M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>133-55 41 AVENUE</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$42M</span>	 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Manhattan</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>15 EAST 57TH STREET</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>A1</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>BUSINESS</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$38M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Bronx</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>1520 STORY AVENUE</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$35M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Staten Island</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>35 RICHMOND TERRACE</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: HOTELS, DORMITORIES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$33M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>22-12 JACKSON AVENUE</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$33M</span>												 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Queens</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>89-48 164TH STREET</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>NB</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>RESIDENTIAL: APARTMENT HOUSES</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$31M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Manhattan</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>11 MADISON AVENUE</span>										 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>A2</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>BUSINESS</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$30M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-										<!-- <tr> -->
-											<!-- <td> -->
-												 <!-- <span>Manhattan</span>											 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>1530 BROADWAY</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>A2</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>MERCANTILE</span>												 -->
-											<!-- </td> -->
-											<!-- <td> -->
-												 <!-- <span>$29M</span>											 -->
-											<!-- </td> -->
-										<!-- </tr> -->
-									<!-- </tbody> -->
-								<!-- </table>								 -->
-								<!-- <p> -->
-									<!-- <a class="btn" href="#"></a> -->
-								<!-- </p> -->
-							<!-- </div> -->
-						<!-- </div> -->
-					<!-- </div> -->
-				<!-- </div> -->
-					<!-- <script src="js/jquery.min.js"></script> -->
-					<!-- <script src="js/bootstrap.min.js"></script> -->
-					<!-- <script src="js/scripts.js"></script>				 -->
 			</div>
 		</div>
 	</div>
@@ -779,6 +400,61 @@ var today = new Date();
 	var yyyy = today.getFullYear();
 	today = mm + '/' + dd + '/' + yyyy;
 	d3.select("#today").html(today);
+	
+	
+        $('body').ready(function() {
+            // preload iframe with message
+            var iframe = document.getElementById('show').src = 'https://nycdob.github.io/NVD3_DOB/examples/TotalSQFT_NB_A1_Q12000_Q42017';
+            var iframedoc = iframe.contentDocument || iframe.contentWindow.document;
+			<!-- iframedoc.body.innerHTML; -->
+            <!-- iframedoc.body.innerHTML = ''; -->
+                <!-- + '<br><br>' -->
+                <!-- + '<div style="text-align: center; color: #666666; font-family: Lato; font-size: 15px; font-weight:bold;">' -->
+                <!-- + 'Click the links above to load the metric here' -->
+                <!-- + '</div>'; -->
+			
+		
+            $('.showbases').click(function(evt){
+                evt.preventDefault();
+                evt.stopPropagation();
+                $(evt.target).fadeOut();
+                $('.chartlinks').stop().slideUp({complete: function() {
+                    $('.showcharts').fadeIn();
+                    $('.baselinks').slideDown();
+                }});
+            });
+            $('.showcharts').click(function(evt){
+                evt.preventDefault();
+                evt.stopPropagation();
+                $(evt.target).fadeOut();
+                $('.baselinks').stop().slideUp({complete: function() {
+                    $('.showbases').fadeIn();
+                    $('.chartlinks').slideDown();
+                }});
+            });
+            $('.examplelinks a').each(function(i, elem) {
+                $(elem).click(function(evt) {
+                    $('#show').prop('src', $(evt.target).prop('href'));
+                    evt.stopPropagation();
+                    evt.preventDefault();
+                    $('.examplelinks a').removeClass('selected');
+                    $(evt.target).addClass('selected');
+                    // add link to source
+                    var urlparts = $(evt.target).prop('href').split('/');
+                    var file = urlparts[urlparts.length - 1];
+                    var sourceurl = 'https://github.com/nvd3-community/nvd3/blob/gh-pages/examples/' + file;
+                    $('#tosource').prop('href', sourceurl).fadeIn();
+                    // also set link to view only the example
+                    $('#showonlythis').prop('href', $(evt.target).prop('href'));
+                    // done
+                    $('#example_options').attr('style', '');
+                    return false;
+                });
+            });
+        });
+	
+	
+	
 var client = new Keen({
   projectId: "5368fa5436bf5a5623000000",
   readKey: "3f324dcb5636316d6865ab0ebbbbc725224c7f8f3e8899c7733439965d6d4a2c7f13bf7765458790bd50ec76b4361687f51cf626314585dc246bb51aeb455c0a1dd6ce77a993d9c953c5fc554d1d3530ca5d17bdc6d1333ef3d8146a990c79435bb2c7d936f259a22647a75407921056"
