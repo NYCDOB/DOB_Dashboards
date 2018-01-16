@@ -25,6 +25,9 @@
 		div.navbar-collapse ul.navbar-nav li.c2 a:hover{
 		color: white;
 	}
+	div.navbar-collapse ul.navbar-nav li.c3 a {
+		color: #8A8A8A;
+	}
 	.chart-waffle {
 		width: 100%;
 		height: 220px;
@@ -67,6 +70,9 @@
 	#sub_nav .navbar-brand {
 		color: black;
 	}
+	#constr .navbar-brand a:hover {
+		color: #8A8A8A;
+	}
 </style>
 
 
@@ -74,7 +80,14 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-brand-heading">
-		<a class="navbar-brand" style="font-size:26px">NYC Construction Dashboard</a>
+		<li><a id="constr" class="navbar-brand" style="font-size:26px" href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/Q4_2017">NYC Construction Dashboard</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+		  <li class="c3"><a>2016 Construction Dashboard</a></li>
+          <li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/two-and-one/Active_ConstructionTM_2" target="_blank">Active Construction</a></li>
+          <!-- <li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/two-and-one/Active_Sheds" target="_blank">Sidewalk Sheds</a></li> -->
+        </ul>
       </div>
     </div>
   </div>
