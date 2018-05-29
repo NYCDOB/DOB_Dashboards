@@ -6,7 +6,6 @@
   <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <script src="https://d3js.org/d3.v3.min.js"></script>
 
 </head>
 
@@ -16,6 +15,12 @@
 		font-size: 28px;
 		font-weight: bold;
 		color: white;		
+	}
+	div.navbar-collapse ul.navbar-nav li.c1 a {
+		color: white;
+	}
+		div.navbar-collapse ul.navbar-nav li.c1 a:hover{
+		color: white;
 	}
 	div.navbar-collapse ul.navbar-nav li.c2 a {
 		color: #8A8A8A;
@@ -54,11 +59,24 @@
 
 <body  class="application">
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid">	
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" href="../"> -->
+          <!-- <span class="glyphicon glyphicon-chevron-left"></span> -->
+        <!-- </a> -->
+        <!-- <a class="navbar-brand" href="./">Layouts &raquo; Split Rows</a> -->
+      </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
-		<li><a id="constr" class="navbar-brand" style="font-size:26px" href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/Q1_2018" target="_blank"><b>NYC Construction Dashboard</b></a>
-			<li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/2017" target="_blank">2017 Construction Dashboard</a></li>
+		<!-- <li><a id="constr" class="navbar-brand" style="font-size:26px" href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/Q1_2018"><b>NYC Construction Dashboard</b></a></li> -->
+		<li class="c1"><a style="font-size:26px" href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/Q1_2018"><b>NYC Construction Dashboard</b></a></li>
+			<li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/2017">2017 Construction Dashboard</a></li>
           	<li class="c3"><a>Active Construction</a></li>
           	<li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/two-and-one/Active_Sheds" target="_blank">Sidewalk Sheds</a></li>
         </ul>
@@ -175,6 +193,11 @@
 	</div>
 </div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
+<script type="text/javascript" src="../../assets/js/meta.js"></script>
+
 <script>
 	var today = new Date();
 	var dd = today.getDate();
