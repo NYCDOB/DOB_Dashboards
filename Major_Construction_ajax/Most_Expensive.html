@@ -44,7 +44,15 @@ $(document).ready(function(){
       if(count === 0)
       {
        table_data += '<th>'+cell_data[cell_count]+'</th>';
-      }
+      } else if (cell_count === 2) {
+			table_data += '<td>' 
+						+ '<a href="http://a810-bisweb.nyc.gov/bisweb/JobsQueryByNumberServlet?passjobnumber=' 
+						+ cell_data[cell_count] 
+						+ '" target="_blank">' 
+						+ cell_data[cell_count] 
+						+ '</a>' 
+						+ '</td>';
+		  }
       else
       {
        table_data += '<td>'+cell_data[cell_count]+'</td>';
