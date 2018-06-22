@@ -201,14 +201,7 @@
       </div>
     </div>
 </body>
-<script>
-	  	var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1;
-		var yyyy = today.getFullYear();
-		today = mm + '/' + dd + '/' + yyyy;	
-		d3.select("#today").html(today);	
-</script>
+
 </html>
 <hr>
 
@@ -225,3 +218,11 @@
   </script>
   <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
   <script type="text/javascript" src="../../assets/js/meta.js"></script>
+<script>
+	  	var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1;
+		var yyyy = today.getFullYear();
+		today = mm + '/' + dd + '/' + yyyy;	
+		d3.select("#today").html(today);	
+</script>
