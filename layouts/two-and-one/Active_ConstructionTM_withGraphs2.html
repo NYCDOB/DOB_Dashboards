@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Active Major Construction</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+</head>
+
+<style>
+
+	.navbar-brand-heading {
+		font-size: 28px;
+		font-weight: bold;
+		color: white;		
+	}
+	div.navbar-collapse ul.navbar-nav li.c1 a {
+		color: white;
+	}
+		div.navbar-collapse ul.navbar-nav li.c1 a:hover{
+		color: white;
+	}
+	div.navbar-collapse ul.navbar-nav li.c2 a {
+		color: #8A8A8A;
+	}
+		div.navbar-collapse ul.navbar-nav li.c2 a:hover{
+		color: white;
+	}
+	div.navbar-collapse ul.navbar-nav li.c3 a {
+		color: #8A8A8A;
+	}
+	#sub_nav {
+		background-color: rgba(222,115,0,.6);
+		border-color: rgb(222,115,0);
+	}
+	#sub_nav .navbar-brand {
+		color: black;
+	}
+	#constr .navbar-brand a:hover {
+		color: #8A8A8A;
+	}
+	html,body {
+		height: 100%;
+	}
+	iframe {
+		width: 100%;
+		height: 88%;
+	}
+	.chart-wrapper{
+		height: 420px;
+	}
+	.chart-stage{
+		height: 100%;
+	}
+	.chart-notes{
+		margin: 0px 0px 25px 0px;		
+	}
+
+
+
+</style>
+
+<!-- MODAL
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">NYC Active Major Construction</h4>
+            </div>
+             <p class="modal-body">The NYC Active Major Construction tool is an interactive map and dashboard that provides real-time insight into all currently active major construction sites. Buildings on the map are categorized by square footage, estimated cost, and proposed dwelling units with larger points denoting higher values. Click on any of the points to get more details as well as a direct link to the permit info on DOB's Building Information System (BIS). The sidebar also contains various interactive filters.</p>
+			<p class="modal-body"><b>Scroll down</b> to view daily Top 10 lists of active sites with the most square footage, most expensive, tallest, and most dwelling units. Additional Top 10 bar graphs show general contractors with the most active city-wide square footage and cost, as well as the occupancy type with the most active square footage.</p>
+			
+			<p class="modal-body">The data used to create this application consists of all active New Building (NB) and Alteration Type 1 (A1) Enlargement permits and is updated daily. <a href= "http://bit.ly/2zCmlts"><b>Download Data</b></a></p>
+        </div>
+    </div>
+</div>
+
+<body  class="application">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">	
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" href="../"> -->
+          <!-- <span class="glyphicon glyphicon-chevron-left"></span> -->
+        <!-- </a> -->
+        <!-- <a class="navbar-brand" href="./">Layouts &raquo; Split Rows</a> -->
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+		<!-- <li><a id="constr" class="navbar-brand" style="font-size:26px" href="https://nycdob.github.io/DOB_Dashboards/layouts/Construction_Dashboard/Q1_2018"><b>NYC Construction Dashboard</b></a></li> -->
+		<li class="c1"><a style="font-size:26px"><b>NYC Active Major Construction</b></a></li>
+			<li class="c2"><a href="#" data-toggle="modal" data-target="#myModal">About</a></li> 
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="sub_nav" class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+		updated on <span id="today"></span>
+      </div>
+
+    </div>
+  </div>
+
+	<iframe frameborder="0" scrolling="no" src="https://timothymartin76.carto.com/builder/cebb7d7a-6575-46bd-ba72-1543a1df6c9f/embed" ></iframe>
+	
+	<div class="chart-notes">
+		NYC Department of Building's Active Major Construction map includes all active New Building (NB) and Alteration Type 1 (A1) Enlargement permits and is updated daily. <a href= "http://bit.ly/2zCmlts">Download Data</a>
+	</div>
+<div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Biggest Projects
+          </div>
+          <div class="chart-stage">
+              <iframe width="100%" frameborder="0" src="https://nycdob.github.io/DOB_Dashboards/Major_Construction_ajax/Biggest_Projects"></iframe>
+          </div>
+          <!-- <div class="chart-notes"> -->
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Most Expensive Projects
+          </div>
+          <div class="chart-stage">
+              <iframe width="100%" height="100%" frameborder="0" src="https://nycdob.github.io/DOB_Dashboards/Major_Construction_ajax/Most_Expensive"></iframe>
+          </div>
+          <!-- <div class="chart-notes"> -->
+          <!-- </div> -->
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Tallest New Buildings by Floor Count
+          </div>
+          <div class="chart-stage">
+              <iframe width="100%" height="100%" frameborder="0" src="https://nycdob.github.io/DOB_Dashboards/Major_Construction_ajax/Tallest_New_Buildings"></iframe>
+          </div>
+          <!-- <div class="chart-notes"> -->
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Most Dwelling Units
+          </div>
+          <div class="chart-stage">
+              <iframe width="100%" height="100%" frameborder="0" src="https://nycdob.github.io/DOB_Dashboards/Major_Construction_ajax/Most_Dwelling_Units"></iframe>
+          </div>
+          <!-- <div class="chart-notes"> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			<div class="chart-wrapper">
+			  <div class="chart-title">
+				Most Square Footage
+			  </div>
+			  <div class="chart-stage">
+					<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_ActiveConstruction_Charts/examples/Most_Square_Footage_Citywide"></iframe>
+			  </div>
+			  <!-- <div class="chart-notes"> -->
+			  <!-- </div> -->
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="chart-wrapper">
+				  <div class="chart-title">
+					Highest Estimated Cost
+				  </div>
+				  <div class="chart-stage">
+						<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_ActiveConstruction_Charts/examples/Highest_Estimated_Cost_Citywide"></iframe>
+				  </div>
+				  <!-- <div class="chart-notes"> -->
+				  <!-- </div> -->
+			</div>
+		</div>  
+		<div class="col-sm-6 col-md-4">
+			<div class="chart-wrapper">
+			  <div class="chart-title">
+				Occupancy Square Footage
+			  </div>
+			  <div class="chart-stage">
+					<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_ActiveConstruction_Charts/examples/Occupancy_SQFT_Citywide"></iframe>
+			  </div>
+			  <!-- <div class="chart-notes"> -->
+			  <!-- </div> -->
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
+<script type="text/javascript" src="../../assets/js/meta.js"></script>
+
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	today = mm + '/' + dd + '/' + yyyy;	
+	d3.select("#today").html(today);
+	
+	
+	   $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+	
+	
+</script>
+</body>
+</html>
