@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Active Permits Risk Screening Tool</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" /> -->
+  <link rel="stylesheet" type="text/css" href="keen-dashboards.css" />
+</head>
+<style>
+.heading {
+	font-size: 18px;
+	font-weight: bold;
+	color: #BF0000;	
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
+}
+.navbar-brand-subheading {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #002878;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;	
+}
+body {
+	background-color: white;
+}
+#chart-01{
+    box-sizing: border-box;
+    width: 100%;
+	height: 160px;
+    <!-- border: 0.5px solid gray; -->
+    float: left;
+	background-color: #A9D7D5;
+	<!-- margin: 0px 0px 12px; -->
+}
+#chart-02{
+    box-sizing: border-box;
+    width: 100%;
+	height: 160px;
+    <!-- border: 0.5px solid gray; -->
+    float: left;
+	background-color: #D8D8D8;
+	<!-- margin: 0px 0px 12px; -->
+}
+#chart-03{
+    box-sizing: border-box;
+    width: 100%;
+	height: 160px;
+    <!-- border: 0.5px solid gray; -->
+    float: left;
+	background-color: #A9D7D5;
+	<!-- margin: 0px 0px 12px; -->
+}
+#chart-04{
+    box-sizing: border-box;
+    width: 100%;
+	height: 160px;
+    <!-- border: 0.5px solid gray; -->
+    float: left;
+	<!-- background-color: #D8D8D8; -->
+	margin: 0px 0px 0px;
+}
+#summary1{
+	font-size: 40px;
+	font-weight: bold;
+	color: #BF0000;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;	
+	text-align: center;
+	line-height: 150%;
+	
+}
+#summary2{
+	font-size: 40px;
+	font-weight: bold;
+	color: #BF0000;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;	
+	text-align: center;
+	line-height: 150%;
+	
+}
+#summary3{
+	font-size: 15px;
+	font-weight: bold;
+	color: #BF0000;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;	
+	text-align: center;
+	line-height: 150%;
+	
+}
+#summary3A{
+	font-size: 28px;
+	font-weight: bold;
+	color: #BF0000;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;	
+	text-align: center;
+	line-height: 150%;
+	
+}
+#summary1txt{
+	font-size: 28px;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	line-height: 97%;
+	padding-top: 10px;
+}
+#summary3txt{
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	line-height: 97%;
+	padding-top: 10px;
+}
+#summary4txt{
+	font-size: 15px;
+	font-weight: bold;
+	color: #BF0000;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	line-height: 97%;
+}
+</style>
+<body class="application">
+
+	<!-- <div class="container-fluid"> -->
+	  <div class="heading">
+		ACTIVE PERMITS RISK SCREENING TOOL (AS OF <span id="today"></span>)
+	  </div>
+	<!-- </div> -->
+
+
+    <!-- <div class="container-fluid"> -->
+      <!-- <div class="navbar-brand-subheading"> -->
+		<!-- AS OF <span id="today"></span> -->
+      <!-- </div> -->
+    <!-- </div> -->
+
+  
+  <!-- <hr> -->
+
+<!-- <div class="container-fluid"> -->
+    <div class="row">
+
+      <div class="col-sm-10">
+        <div class="chart-wrapper">
+          <div class="chart-stage">
+            <iframe width="100%" height="660px" frameborder="0" src="https://nycdob.github.io/D3_ActivePermits_Risk/"></iframe>
+          </div>
+        </div>
+      </div>
+
+          <div class="col-sm-2">
+            <div class="chart-wrapper">
+              <!-- <div class="chart-title"> -->
+                <!-- Cell Title -->
+              <!-- </div> -->
+              <div class="chart-stage" id="chart-01">
+                <div id="summary1txt" >NUMBER OF </br>HIGH RISK ACTIVE PERMITS: </br><span id="summary1"></span></div>
+              </div>
+              <!-- <div class="chart-notes"> -->
+                <!-- Notes about this chart -->
+              <!-- </div> -->
+            </div>
+          </div>
+
+
+          <div class="col-sm-2">
+            <div class="chart-wrapper">
+              <!-- <div class="chart-title"> -->
+                <!-- Cell Title -->
+              <!-- </div> -->
+              <div class="chart-stage" id="chart-02">
+                <div id="summary1txt" >NUMBER OF </br>MEDIUM RISK ACTIVE PERMITS: </br><span id="summary2"></span></div>
+              </div>
+              <!-- <div class="chart-notes"> -->
+                <!-- Notes about this chart -->
+              <!-- </div> -->
+            </div>
+          </div>
+
+
+          <div class="col-sm-2">
+            <div class="chart-wrapper">
+              <!-- <div class="chart-title"> -->
+                <!-- Cell Title -->
+              <!-- </div> -->
+              <div class="chart-stage" id="chart-03">
+                <div id="summary3txt" >MOST FREQUENT CONTRACTOR: </br><span id="summary3"></span> </br>ASSOCIATED WITH </br><span id="summary3A"></span></br>ACTIVE HIGH/MEDIUM RISK PERMITS</div>
+              </div>
+              <!-- <div class="chart-notes"> -->
+                <!-- Notes about this chart -->
+              <!-- </div> -->
+            </div>
+          </div>
+		  
+          <div class="col-sm-2">
+            <div class="chart-wrapper">
+              <!-- <div class="chart-title"> -->
+                <!-- Cell Title -->
+              <!-- </div> -->
+              <div class="chart-stage"  id="chart-04">
+                <!-- <div style="background: #4286f4;"></div> -->
+				<div id="summary4txt" >HIGH RISK COMMUNITY DISTRICTS</div><iframe width="100%" height="150px" frameborder="0" scrolling="no" src="https://nycdob.github.io/NVD3_DOB/examples/ActivePermits_HighRisk_CDs"></iframe>
+              </div>
+              <!-- <div class="chart-notes"> -->
+                <!-- Notes about this chart -->
+              <!-- </div> -->
+            </div>
+          </div>
+
+    </div>
+
+	<!-- <hr> -->
+
+<!-- <p class="small text-muted">Built by DOB Analytics </p> -->
+
+<!-- </div> -->
+<div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="chart-wrapper">
+          <div class="chart-stage">
+            <iframe width="100%" height="300px" frameborder="0" scrolling="no" src="https://nycdob.github.io/D3_ActivePermits_Risk/index_table"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <!-- <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <!-- <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- <script type="text/javascript" src="../../assets/lib/holderjs/holder.js"></script> -->
+  <!-- <script> -->
+    <!-- Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 }); -->
+  <!-- </script> -->
+
+  <!-- <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script> -->
+  <script type="text/javascript" src="keen.min.js"></script>
+  <!-- <script type="text/javascript" src="../../assets/js/meta.js"></script> -->
+  <script type="text/javascript" src="meta.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.9/d3.min.js"></script>
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	today = mm + '/' + dd + '/' + yyyy;	
+	d3.select("#today").html(today);
+	
+	/*
+	var myFileUri = "https://raw.githubusercontent.com/NYCDOB/D3_ActivePermits_Risk/gh-pages/data/SiteSafetyAutomationOutput.csv";
+	alertCsvCount(myFileUri);
+
+	function alertCsvCount(myFileUri){
+	  //get file with jQuery
+	  $.get(myFileUri, function(data) {
+	  var lineCount = data.split('\n').length;
+	  //output it
+	  $(".rowcount").html(lineCount);
+	  console.log(lineCount);
+	  d3.select("#summary1").html(lineCount);
+	  })
+	}
+	*/
+	d3.csv("https://raw.githubusercontent.com/NYCDOB/D3_ActivePermits_Risk/gh-pages/data/SiteSafetyAutomationOutput.csv", function(d){
+		return {
+			bin : +d.BIN,
+			address : d.Address,
+			borough : d.Borough,
+			cd : +d["Community Board"],
+			numPermits : +d["Number of Permits"],
+			numStories : +d["Number of Stories"],
+			scoffoldShedFence : d.ScaffoldShedFence,
+			jobtype : d["Job Type"],
+			jobnumber : d["Job Number"],
+			contractor : d.Contractor,
+			accidents : +d.Accidents,
+			co_tco : d["CO/TCO"],
+			co_tco_date : d["CO/TCO Recent Date"],
+			score : +d.Score			
+		};
+
+		}, function (data){
+
+			var contractor_mode = d3.nest()
+				.key(function(d) { return d.contractor; })
+				.rollup(function(v) { return v.length; })
+				.entries(data)	
+				.sort(function(a, b){ return d3.descending(a.values, b.values); });
+			console.log(JSON.stringify(contractor_mode));
+			var contrHighFreq = contractor_mode[0].key;
+			var contrValHighFreq = contractor_mode[0].values;
+			console.log(contrHighFreq);
+			console.log(contrValHighFreq);
+			d3.select("#summary3").html(contrHighFreq);
+			d3.select("#summary3A").html(contrValHighFreq);
+			
+			var highrisk = data.filter(function(d){
+				return d.score > 6;
+			});
+			console.log(highrisk.length);
+			d3.select("#summary1").html(highrisk.length);
+			
+			var mediumrisk = data.filter(function(d){
+				return d.score <7;
+			});
+			d3.select("#summary2").html(mediumrisk.length);
+			
+
+			
+	});
+	
+
+	
+
+
+	
+	
+
+</script>
+</body>
+</html>
