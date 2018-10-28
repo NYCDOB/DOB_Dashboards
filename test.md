@@ -1,8 +1,6 @@
-# Islandora Example Module [![Build Status](https://travis-ci.org/Islandora/islandora_example_module.png?branch=7.x)](https://travis-ci.org/Islandora/islandora_example_module)
+## DOB Building Profiles
 
-## Introduction
-
-A brief introduction and summary of the module.
+The DOB Building Profiles application provides users with a near real-time view into construction and building code enforcement activities from both a citywide and a building-level perspective. The total number of construction permits issued, complaints generated, inspections conducted, violations issued, and construction-related accidents is aggregated at the building-level on a rolling 12-month period. This information gives the user a view into construction industry and DOB compliance activities throughout the five boroughs. 
 
 ## Documentation
 
@@ -18,17 +16,25 @@ Having problems or solved a problem? Check out the Islandora google groups for a
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [R](https://www.r-project.org/)
+* [Carto VL](https://carto.com/developers/carto-vl/)
+* [D3](https://d3js.org/)
+* [Bootstrap](https://getbootstrap.com/)
 
-## Contributing
+## Backend Processes  
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is issued against tables of the OBIEE semantic layer.  Data extractions from multiple databases are cleaned, filtered, and aggregated using at the building (BIN) level, merged with the NYC Building Footprints, then pushed out to Carto via automated  ETL processes. 
 
-## Versioning
+## Data Sources
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+*	Building Information System
+    + Permits
+    + Complaints
+    + Violations
+*	DOB NOW Build Permits
+*	DOB NOW Inspections
+*	DOB Incident Database
+*	NYC Building Footprints
 
 ## Authors
 
