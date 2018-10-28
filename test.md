@@ -24,9 +24,13 @@ Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is iss
 *	DOB Incident Database
 *	NYC Building Footprints
 
-## Authors
+## Built by
 
-* **DOB Analytics and Data Science Unit** 
+*	DOB Analytics and Data Science Team
+    + Tim Martin (Chief Analytics Officer)
+    + Ben Mancell (GIS Manager)
+    + Cindy Nicklin (Director, Data Governance)
+    + Feng Guo (Performance Analyst)
 
 ## Acknowledgments
 
