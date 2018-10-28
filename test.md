@@ -4,37 +4,6 @@
 
 A brief introduction and summary of the module.
 
-## Requirements
-
-This module requires the following modules/libraries:
-
-* [Islandora](https://github.com/islandora/islandora)
-* [Tuque](https://github.com/islandora/tuque)
-* Any
-* Additional
-* Requirements
-
-## Installation
-
-Install as usual, see [this](https://drupal.org/documentation/install/modules-themes/modules-7) for further information.
-
-## Configuration
-
-Set the paths for `example` and `module` in Administration » Islandora » MODULE (admin/islandora/module).
-
-Include a screenshot of configuration page. When using your choice of screenshot software, resize your browser
-first to avoid wide screenshots. Here are a few browser extension examples to take screenshots.
-
-  * [Fireshots](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg)
-  * [Nimbus](https://chrome.google.com/webstore/detail/nimbus-screenshot-screen/bpconcjcammlapcogcnnelfmaeghhagj)
-
-To upload the image drag the image into the comment section of an existing Pull Request. 
-
-This will generate the image url link for you
-  ![Configuration Screenshot](https://user-images.githubusercontent.com/2857697/39014759-e2ef9c1e-43e0-11e8-921c-c2a3234d65d2.jpg)
-
-Video example on [How to attach an Image in README.md file with Github](https://youtu.be/wVHJtL-y7P0)
-
 ## Documentation
 
 Further documentation for this module is available at [include link to relevant documentation in the Islandora wiki]
@@ -46,30 +15,33 @@ Having problems or solved a problem? Check out the Islandora google groups for a
 * [Islandora Group](https://groups.google.com/forum/?hl=en&fromgroups#!forum/islandora)
 * [Islandora Dev Group](https://groups.google.com/forum/?hl=en&fromgroups#!forum/islandora-dev)
 
-## FAQ
 
-Q. Is this normal?
+## Built With
 
-A. Yes. This is normal. Why ...
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-## Maintainers/Sponsors
+## Contributing
 
-Current maintainers:
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-* [Maintainer Name](https://github.com/maintainer_github)
-* [Another Maintainer](https://github.com/maintainer_github)
+## Versioning
 
-This project has been sponsored by:
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-* Some really awesome sponsor
-A description of this really awesome sponsor
+## Authors
 
-## Development
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
-If you would like to contribute to this module, please check out [CONTRIBUTING.md](CONTRIBUTING.md). In addition, we have helpful [Documentation for Developers](https://github.com/Islandora/islandora/wiki#wiki-documentation-for-developers) info, as well as our [Developers](http://islandora.ca/developers) section on the [Islandora.ca](http://islandora.ca) site.
-
-Also include any Travis gotcha's here. 
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-[GPLv3](http://www.gnu.org/licenses/gpl-3.0.txt)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
