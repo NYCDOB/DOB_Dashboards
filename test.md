@@ -32,13 +32,13 @@ Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is iss
 ### Main Menu (12 month metrics)
 | Metric | Definition |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| All Buildings | Every building that has interacted with the DOB  via permit, complaints, inspection, violations, and accidents |
+| All Buildings | Every building that has interacted with DOB via permit, complaints, inspection, violations, and accidents |
 | Total Permits | Every building where a DOB permit was issued |
 | BIS Permits | Every building where a DOB permit was issued in person through one of our Borough Offices, through the Development Hub, or online through e-Filing |
 | DOB NOW Permits | Every building where a DOB permit was issued through DOB NOW: Build |
 | New Buildings | Every building where a permit was issued to build an entirely new building |
 | Total Complaints | Every building where a complaint was issued to DOB |
-| Illegal Conversion | Every building where DOB received a complaint about illegal conversion - An illegal conversion is an alteration or modification of an existing building to create an additional housing unit without first obtaining approval from DOB |
+| Illegal Conversion | Every building where DOB received a complaint about illegal conversion - An illegal conversion is an alteration or modification of an existing building to create an additional housing unit without first obtaining approval from DOB  `This is the first definition I have noted for adding code.` I suggest this simple syntax because I had trouble getting [fenced syntax](https://docs.gitlab.com/ee/user/markdown.html#code-and-syntax-highlighting) to work within a table|
 | Work Without Permit | Every building where DOB received a complaint about construction occurring without an active DOB permit |
 | Tenant Harassment | Every building where DOB received a complaint about tenant harassment |
 | Total Inspections | Every building where DOB performed  an inspection |
