@@ -15,7 +15,7 @@ The New York City Department of Buildings (DOB) Building Profiles application pr
 
 ## Backend Processes  
 
-Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is issued against tables of the OBIEE semantic layer.  Data extractions from multiple databases are cleaned, filtered, and aggregated at the building (BIN) level, merged with the NYC Building Footprints, then pushed out to Carto via automated ETL processes. 
+Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is issued against tables of the OBIEE semantic layer.  Data extractions from multiple databases are cleaned, filtered, and aggregated at the building (BIN) level, merged with the [NYC Building Footprints](https://github.com/CityOfNewYork/nyc-geo-metadata/blob/master/Metadata/Metadata_BuildingFootprints.md), then pushed out to Carto via automated ETL processes. 
 
 ## Data Sources
 
