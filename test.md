@@ -1,6 +1,6 @@
 ## DOB Building Profiles
 
-The DOB Building Profiles application provides users with a near real-time view into construction and building code enforcement activities from both a citywide and a building-level perspective. The total number of construction permits issued, complaints generated, inspections conducted, violations issued, and construction-related accidents is aggregated at the building-level on a rolling 12-month period. This information gives the user a view into construction industry and DOB compliance activities throughout the five boroughs. 
+The New York City Department of Buildings (DOB) Building Profiles application provides near real-time insight into construction and building code enforcement activities from both a citywide and a building-level perspective. The total number of construction permits issued, complaints generated, inspections conducted, violations issued, and construction-related accidents is aggregated at the building-level on a rolling 12-month period. This information gives the user a view into construction industry and DOB compliance activities throughout the five boroughs. 
 
 ![Alt Text](https://github.com/NYCDOB/DOB_Dashboards/blob/Dev_2016/profiles_screen.PNG)
 
