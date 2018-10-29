@@ -15,18 +15,18 @@ The New York City Department of Buildings (DOB) Building Profiles application pr
 
 ## Backend Processes  
 
-Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is issued against tables of the OBIEE semantic layer.  Data extractions from multiple databases are cleaned, filtered, and aggregated at the building (BIN) level, merged with the [NYC Building Footprints](https://github.com/CityOfNewYork/nyc-geo-metadata/blob/master/Metadata/Metadata_BuildingFootprints.md), then pushed out to Carto via automated ETL processes. 
+Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is issued against tables of the OBIEE semantic layer.  Data extractions from multiple databases are cleaned, filtered, and aggregated at the building (BIN) level, merged with the NYC Building Footprints, then pushed out to Carto via automated ETL processes. 
 
 ## Data Sources
 
-*	Building Information System
+*	[Building Information System](http://a810-bisweb.nyc.gov/bisweb/bsqpm01.jsp)
     + Permits
     + Complaints
     + Violations
 *	DOB NOW Build Permits
 *	DOB NOW Inspections
 *	DOB Incident Database
-*	NYC Building Footprints
+*	[NYC Building Footprints](https://github.com/CityOfNewYork/nyc-geo-metadata/blob/master/Metadata/Metadata_BuildingFootprints.md)
 
 ## Data Definitions
 ### Main Menu (12 month metrics)
@@ -37,8 +37,8 @@ Data are extracted using R-JDBC connection protocol to OBIEE. Logical SQL is iss
 | BIS Permits | Every building where a DOB permit was issued in person through one of our Borough Offices, through the Development Hub, or online through e-Filing |
 | DOB NOW Permits | Every building where a DOB permit was issued through DOB NOW: Build |
 | New Buildings | Every building where a permit was issued to build an entirely new building |
-| Total Complaints | Every building where a complaint was issued to the DOB |
-| Illegal Conversion | An illegal conversion is an alteration or modification of an existing building to create an additional housing unit without first obtaining approval from the New York City DOB Every building where the DOB received a complaint about illegal conversion |
+| Total Complaints | Every building where a complaint was issued to DOB |
+| Illegal Conversion | Every building where DOB received a complaint about illegal conversion - An illegal conversion is an alteration or modification of an existing building to create an additional housing unit without first obtaining approval from DOB |
 | Work Without Permit | Every building where the DOB received a complaint about construction occurring without an active DOB permit |
 | Tenant Harassment | Every building where the DOB received a complaint about tenant harassment |
 | Total Inspections | Every building where the DOB performed  an inspection |
