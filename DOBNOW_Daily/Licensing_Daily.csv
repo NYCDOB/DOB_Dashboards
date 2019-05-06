@@ -1,10 +1,5 @@
-"License Description","volume","day"
-"Journeyman",1,2019-04-30
-"Welder",5,2019-04-30
-"Gas Work Qualification Only",1,2019-05-01
-"Journeyman",2,2019-05-01
-"Welder",4,2019-05-01
-"Journeyman",2,2019-05-02
-"Welder",1,2019-05-02
-"Journeyman",3,2019-05-03
-"Welder",3,2019-05-03
+"day","Gas Work Qualification Only","Journeyman","Welder"
+2019-04-30,0,1,5
+2019-05-01,1,2,4
+2019-05-02,0,2,1
+2019-05-03,0,3,3

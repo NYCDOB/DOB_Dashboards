@@ -1,11 +1,5 @@
-"year","volume","metric"
-2016,3,"Safety Boilers"
-2017,38040,"Safety Boilers"
-2018,94915,"Safety Boilers"
-2019,34857,"Safety Boilers"
-2016,1894,"Safety Facades"
-2019,3381,"Safety Facades"
-2017,6787,"Safety Facades"
-2018,5312,"Safety Facades"
-2019,56562,"Safety Elevators"
-2018,30470,"Safety Elevators"
+"year","Safety Boilers","Safety Elevators","Safety Facades"
+2016,3,0,1894
+2017,38040,0,6787
+2018,94915,30470,5312
+2019,34857,56562,3381
