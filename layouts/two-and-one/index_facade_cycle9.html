@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local Law 11</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="keen-dashboards.css" /> -->
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+
+</head>
+
+<style>
+	.navbar-brand-heading {
+		font-size: 28px;
+		font-weight: bold;
+		color: white;		
+	}
+	div.navbar-collapse ul.navbar-nav li.c2 a {
+		color: #8A8A8A;
+	}
+		div.navbar-collapse ul.navbar-nav li.c2 a:hover{
+		color: white;
+	}
+	div.navbar-collapse ul.navbar-nav li.c3 a {
+		color: #8A8A8A;
+	}
+	#sub_nav {
+		background-color: rgba(222,115,0,.6);
+		border-color: rgb(222,115,0);
+	}
+	#sub_nav .navbar-brand {
+		color: black;
+	}
+	#fac .navbar-brand {
+		color: #8A8A8A;
+	}
+	html,body {
+		height: 100%;
+	}
+	iframe {
+		width: 100%;
+		height: 89%;
+	}
+
+</style>
+
+
+<body  class="application">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+			<li><a id="fac" class="navbar-brand" style="font-size:26px"><b>NYC DOB | Facades</b></a></li>
+			<li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/two-and-one/index_facade_cycle7">Cycle 7 Map</a></li>
+      <li class="c2"><a href="https://nycdob.github.io/DOB_Dashboards/layouts/two-and-one/index_facade_cycle8">Cycle 8 Map</a></li>
+        </ul>
+      </div>
+     </div>
+    </div>
+  <div id="sub_nav" class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+		Local Law 11: Cycle 9 Buildings as of <span id="today"></span>
+      </div>
+
+    </div>
+  </div>
+	
+	<iframe frameborder="0" scrolling="no" src="https://timothymartin76.carto.com/builder/c5a5f5b0-c60e-483a-90b6-f6893cecd0b7/embed"></iframe>
+	  
+	
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	today = mm + '/' + dd + '/' + yyyy;	
+	d3.select("#today").html(today);
+</script>
+</body>
+</html>
