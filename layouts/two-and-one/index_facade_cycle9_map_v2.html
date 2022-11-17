@@ -548,9 +548,7 @@ function ready(){
 						//'INSPECTION COMPLETE DATE: ' + d.inspCompleteDate + '</br>' +
 						//'PENDING INSPECTION: ' + pendVal(d.pending)
                         'QEWI NAME: ' + d.qewi_name + '</br>' +
-                        'QEWI BUSINESS NAME: ' + d.qewi_business + 
-						`<br><span class="fisphist" style="cursor:pointer">FISP History</span>
-						<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>`
+                        'QEWI BUSINESS NAME: ' + d.qewi_business
 					)
 					if (d3.event.pageX > (width - 200)) {
 					   tooltipFacades.style("left", (d3.event.pageX - 350) + "px");
@@ -564,9 +562,7 @@ function ready(){
 					   tooltipFacades.style("top", (d3.event.pageY -30) + "px");
 					}
 				}
-				document.querySelector(".fisphist").addEventListener('click', e=>  {
-				localStorage.setItem('cathyBIN',d.Bin); window.open('https://nycdob.github.io/DOB_Dashboards/layouts/two-and-one/fisphistory.html',"fisphist")   
-				} );
+
 
 			})
 			.on("mouseover", function(d, i){
