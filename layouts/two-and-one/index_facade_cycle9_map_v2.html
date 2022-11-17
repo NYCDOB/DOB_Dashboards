@@ -218,7 +218,15 @@ svg {
 	
 }
 
-
+.fisphist {
+	font-weight: 700;
+	cursor: pointer;
+}
+.glyphicon {
+    font-size: 10px;
+	vertical-align: 30%
+}
+	  
 .ui {
 	top: 10px;
 	left: 50px;
@@ -540,7 +548,9 @@ function ready(){
 						//'INSPECTION COMPLETE DATE: ' + d.inspCompleteDate + '</br>' +
 						//'PENDING INSPECTION: ' + pendVal(d.pending)
                         'QEWI NAME: ' + d.qewi_name + '</br>' +
-                        'QEWI BUSINESS NAME: ' + d.qewi_business
+                        'QEWI BUSINESS NAME: ' + d.qewi_business + 
+						`<br><span class="fisphist" style="cursor:pointer">FISP History</span>
+						<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>`
 					)
 					if (d3.event.pageX > (width - 200)) {
 					   tooltipFacades.style("left", (d3.event.pageX - 350) + "px");
@@ -554,6 +564,9 @@ function ready(){
 					   tooltipFacades.style("top", (d3.event.pageY -30) + "px");
 					}
 				}
+				document.querySelector(".doHistory").addEventListener('click', e=>  {
+				localStorage.setItem('cathyBIN',d.Bin); window.open('https://cathycodes.github.io/FISPHistory/fisphistory.html',"fisphist")   
+				} );
 
 			})
 			.on("mouseover", function(d, i){
