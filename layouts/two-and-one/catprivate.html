@@ -428,7 +428,6 @@ input:checked + .slider:before {
 	</div>
 	<p class="small text-muted" style=" position:relative; bottom:0px;">Built by DOB Analytics <a href="https://www1.nyc.gov/site/buildings/dob/analytics-reports.page" target="_blank">Dev Squad</a></p>	
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.9/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-format@3"></script>
@@ -444,9 +443,7 @@ input:checked + .slider:before {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/api/fnSortNeutral.js"></script>
-
 <script>
-
 $(document).ready(function(){
 	var today = new Date();
 	var dd = today.getDate();
@@ -459,6 +456,7 @@ $(document).ready(function(){
 	var formatDate = d3.time.format("%-m/%-d/%Y").parse;
 	var numberFormat = d3.format(",.0f");
 	var legendNumFormat = d3.format(",");
+	;localStorage.clear();
     L.Control.include({
       _refocusOnMap: L.Util.falseFn // Do nothing.
     });	
