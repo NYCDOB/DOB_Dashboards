@@ -122,23 +122,19 @@ svg {
 	<!-- margin: 0px 0px 12px; -->
 }
 
-
 #chart-boro-facades{
     box-sizing: border-box;
     width: 100%;
-	height: 220px;
-    /* height: 160px; */
+	height: 180px;
 	/* height: 100%; */
     float: left;
 	background-color: #dfdfdf;
 	margin-bottom: 10px;
 }
-
 #chart-status{
     box-sizing: border-box;
     width: 100%;
 	height: 200px;
-    /* height: 180px; */
     float: left;
 	background-color: #dfdfdf;
 	margin-bottom: 10px;
@@ -146,8 +142,7 @@ svg {
 #borosheds{
 	margin-top: 10px;
 	padding: 0px;
-    height: 190px;
-	/* height: 130px; */
+	height: 150px;
 	width: 100%;
 	background-color: #fff;
 }
@@ -155,7 +150,6 @@ svg {
 	margin-top: 10px;
 	padding: 0px;
 	height: 140px;
-    /* height: 120px; */
 	width: 100%;
 	background-color: #fff;
 }
@@ -163,7 +157,6 @@ svg {
 	margin-top: 10px;
 	padding: 0px;
 	height: 140px;
-    /* height: 120px; */
 	width: 100%;
 	background-color: #fff;
 }
@@ -171,7 +164,7 @@ svg {
 #pendInsp{
 	margin-top: 10px;
 	padding: 0px;
-	height: 120px;
+	height: 170px;
 	width: 100%;
 	background-color: #fff;
 }
@@ -180,7 +173,6 @@ svg {
     box-sizing: border-box;
     width: 100%;
 	height: 200px;
-    /* height: 180px; */
     <!-- border: 0.5px solid gray; -->
     float: left;
 	background-color: #dfdfdf;
@@ -190,7 +182,7 @@ svg {
 #chart-pend{
     box-sizing: border-box;
     width: 100%;
-	height: 180px;
+	height: 230px;
     <!-- border: 0.5px solid gray; -->
     float: left;
 	background-color: #dfdfdf;
@@ -417,12 +409,12 @@ input:checked + .slider:before {
 						<svg id="subcycles"></svg>
 					  </div>
 					</div>
-					<!-- <div class="chart-wrapper">
+					<div class="chart-wrapper">
 					  <div class="chart-stage" id="chart-pend">
-						<div class="summarytxt" >PENDING INSPECTIONS </br><span id="summary4"></span></div>
+						<div class="summarytxt" >NO REPORT FILED SUB-CYCLE </br><span id="summary4"></span></div>
 						<svg id="pendInsp"></svg>
 					  </div>
-					</div> -->
+					</div>
 				</div>
 			  </div>
 	</div>
@@ -757,6 +749,20 @@ function ready(){
 			console.log(nestCycles);
 			cycleChart(nestCycles);
 			
+			//NRF SUB CYCLES
+			var filterVals=points.filter(function(d){
+				return ((d["CN Filing Status"]=="No Report Filed"))
+			})
+			var nestPending = d3.nest()
+				.key(function(d) { return d.cycle; })
+				.rollup(function(v) {
+					return v.length;
+				})			
+				.entries(filterVals)
+				//.sort(function(a, b){ return d3.descending(a.values, b.values); })//.slice(0,5);	
+			//console.log(nestPending);
+			pendChart(nestPending);
+			
 			
 			//PENDING INSPECTIONS
 			var nestPending = d3.nest()
@@ -934,61 +940,61 @@ function ready(){
 				});
 			}
 			
-			// function pendChart(data){
-			// 	var pendData = [
-			// 		{
-			// 			key: "totals",
-			// 			values: []
-			// 		}
-			// 	];
+			 function pendChart(data){
+			 	var pendData = [
+			 		{
+			 			key: "totals",
+			 			values: []
+			 		}
+			 	];
 
-			// 	// populate the empty object with your data
-			// 	data.forEach(function (d){
-			// 		d.values = +d.values
-			// 		pendData[0].values.push(d)
-			// 	})     
+			 	 //populate the empty object with your data
+			 	data.forEach(function (d){
+			 		d.values = +d.values
+			 		pendData[0].values.push(d)
+			 	})     
 								
-			// 		nv.addGraph(function() {				
-			// 			var chart = nv.models.discreteBarChart()
-			// 				.x(function (d) {  
-			// 					return d.key 
-			// 				})
-			// 				.y(function (d) { 
-			// 					return d.values 
-			// 				})
-			// 				.duration(250)
-			// 				.margin({top: 15, right: 10, bottom: 20, left: 50})
-			// 				.color(['#7899b0']);
-			// 			chart.yAxis.tickFormat(d3.format(','));
+			 		nv.addGraph(function() {				
+			 			var chart = nv.models.discreteBarChart()
+			 				.x(function (d) {  
+			 					return d.key 
+			 				})
+			 				.y(function (d) { 
+			 					return d.values 
+			 				})
+			 				.duration(250)
+			 				.margin({top: 15, right: 10, bottom: 20, left: 50})
+			 				.color(['#7899b0']);
+			 			chart.yAxis.tickFormat(d3.format(','));
 
-			// 			chart.xAxis.axisLabelDistance(10);
-			// 			chart.xAxis.tickFormat(function(d){
-			// 				if (typeof this != 'undefined') {
-			// 				var el = d3.select(this);
-			// 				var p = d3.select(this.parentNode);
-			// 				p.append("foreignObject")
-			// 					.attr('x', -100)
-			// 					.attr("width", 200)
-			// 					.attr("height", 200)
-			// 					.append("xhtml:p")
-			// 					.attr('style','word-wrap: break-word; text-align:center; font: normal 9px sans-serif; pointer-events: auto;')
-			// 					.html(d);
-			// 					el.remove();
-			// 					return d;
-			// 				}
+			 			chart.xAxis.axisLabelDistance(10);
+			 			chart.xAxis.tickFormat(function(d){
+			 				if (typeof this != 'undefined') {
+			 				var el = d3.select(this);
+			 				var p = d3.select(this.parentNode);
+			 				p.append("foreignObject")
+			 					.attr('x', -100)
+			 					.attr("width", 200)
+			 					.attr("height", 200)
+			 					.append("xhtml:p")
+			 					.attr('style','word-wrap: break-word; text-align:center; font: normal 9px sans-serif; pointer-events: auto;')
+			 					.html(d);
+			 					el.remove();
+			 					return d;
+			 				}
 
-			// 			});	
+			 			});	
 											
-			// 				d3.select('#pendInsp')
-			// 						.datum(pendData)
-			// 						.transition().duration(250)
-			// 						.call(chart);
-			// 				nv.utils.windowResize(chart.update);
-			// 				return chart;
-			// 		}
-			// 	);
+			 				d3.select('#pendInsp')
+			 						.datum(pendData)
+			 						.transition().duration(250)
+			 						.call(chart);
+			 				nv.utils.windowResize(chart.update);
+			 				return chart;
+			 		}
+			 	);
 				
-			// }
+			 }
 			
 	});	
 	
