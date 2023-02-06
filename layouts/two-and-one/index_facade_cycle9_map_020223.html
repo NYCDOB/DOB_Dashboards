@@ -768,7 +768,7 @@ function ready(){
 	
 	
 	 
-		d3.csv("https://raw.githubusercontent.com/NYCDOB/data_store/master/facadeLL11_020223",function(data){
+		d3.csv("https://raw.githubusercontent.com/NYCDOB/data_store/master/facadeLL11_020223.csv",function(data){
 				points = data.filter(function(d) {
 					if( ((+d["Lat"] != 0) && (+d["Lon"] !=0 )) && (([d.Cycle] == "9A") || [d.Cycle] == "9B" || [d.Cycle] == "9C") ) {
 						return d;
