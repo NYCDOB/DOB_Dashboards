@@ -18,7 +18,6 @@ body {
 #map {
 	height: 100%;
 	width: 100%;
-	background-color: #333;
 	pointer-events: all;
 }
 
@@ -770,7 +769,7 @@ function ready(){
 	 
 		d3.csv("https://raw.githubusercontent.com/NYCDOB/data_store/master/facadeLL11_v3.csv",function(data){
 				points = data.filter(function(d) {
-					if( ((+d["Lat"] != 0) && (+d["Lon"] !=0 )) && (([d.Cycle] == "7A") || [d.Cycle] == "7B" || [d.Cycle] == "7C") ) {
+					if( (([d.Cycle] == "7A") || [d.Cycle] == "7B" || [d.Cycle] == "7C") ) {
 						return d;
 					}
 				}).map(function(d){
