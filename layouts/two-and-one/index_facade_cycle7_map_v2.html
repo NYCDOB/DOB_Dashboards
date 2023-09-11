@@ -651,7 +651,7 @@ function ready(){
 					   tooltipFacades.style("top", (d3.event.pageY -30) + "px");
 					}
 				}
-    			document.querySelector(".fisphist").addEventListener('click',e=>{window.open('fisphistory.html?'+d.Bin,"fisphist")})
+    			document.querySelector(".fisphist").addEventListener('click',e=>{window.open('https://nycdob.github.io/FISPHistory/fisphistory.html?'+d.Bin,"fisphist")})
 			})
 			.on("mouseover", function(d, i){
 				previousColor = d3.select(this).style("fill");
