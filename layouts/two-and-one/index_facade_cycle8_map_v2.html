@@ -2,14 +2,13 @@
 <html>
   <title>Local Law 11</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="icon" href="https://www.nyc.gov/favicon.ico"/>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="https://nycdob.github.io/ActiveNB_A1enlargements/keen/keen-dashboards.css" />
   <link href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css' rel='stylesheet' type='text/css'/>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/r-2.1.0/se-1.2.0/datatables.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link href="https://nycdob.github.io/ActiveNB_A1enlargements/build/nv.d3.css" rel="stylesheet" type="text/css">
   <style>
-
 
 body {
 	background-color: white;
@@ -62,47 +61,23 @@ body {
 	position: absolute;
 	visibility: hidden;
 }
-
-
-
-/* @media( max-width:1200px){
-	.dobmain	{
-		padding-top:50px;
-	}
-	.legendShed {
-		visibility:hidden;
-	}
-	.legendCD {
-		visibility:hidden;
-	}
-	.ui {
-		margin-top: -150px;
-	}
+.tooltip {
+    z-index: 500;
+    visibility: hidden;
+    color:black;
+    background: #fff;
+    border-radius: 3px; 
+    opacity: 95%; 
+    position: absolute;
+    border: 1px solid #707070;
+    bottom: 5px;
+    width: 26em;
+    font-size:1em;
+    left:5px;
+    display:flex;
+    max-height:50%;
+    flex-direction: column; 
 }
-@media ( max-width:2100px){
-	.summarytxt_sheds {
-		font-size: 12px !important;
-	}
-	.summarytxt_avgAge {
-		font-size: 12px !important;
-	}
-	.summarytxt_feet {
-		font-size: 12px !important;
-	}
-	#summary1_sheds {
-		font-size: 25px !important;
-	}
-	#summary2_avgAge {
-		font-size: 25px !important;
-	}
-	#summary3_feet {
-		font-size: 25px !important;
-	}
-	.summarytxt {
-		font-size: 12px !important;
-	}
-} */
-
 
 svg {
 	display: block;
@@ -239,15 +214,6 @@ svg {
 	line-height: 125%;
 	
 }
-
-.fisphist {
-	font-weight: 700;
-	cursor: pointer;
-}
-.glyphicon {
-    font-size: 10px;
-	vertical-align: 30%
-}
 	  
 .ui {
 	top: 10px;
@@ -261,8 +227,68 @@ svg {
 	border-radius: 7px;
 	width: 280px;
 }
+.fisphist {
+	font-weight: 700;
+	font-size: 1.1em;
+	/*cursor: pointer;*/
+}
+._cycleD {
+padding: 2px 10px 10px;
+overflow-y:auto;
+}
+._cycleD > div{
+display: flex;
+margin: 3px 0px;
 
-
+}
+._fM3_0 :nth-child(1){
+flex:5;
+}
+._fM3_0 :nth-child(2){
+flex:4;
+}
+._b {
+font-weight:600;
+font-size: 1.2em;
+padding:10px;
+margin:0px;
+}
+._cor{
+color:white;display:none;
+}
+._nav{
+flex:1;
+}
+._tD{
+background-color: #969696 ;
+color: white;
+display:flex;
+padding:0 10px;
+}
+._tD div {
+align-self:center;
+}
+._tD :nth-child(2) {
+flex:1;
+}
+._pr, ._nx,._cl {
+font-size:1.2em;
+cursor:pointer;
+}
+._cl{
+float:right;
+}
+a.ndec{
+text-decoration: none;
+}
+.material-symbols-outlined {
+font-variation-settings:
+'FILL' 0,
+'wght' 110,
+'GRAD' -25,
+'opsz' 10;
+font-size: 12px;
+}
 
 /* The switch - the box around the slider */
 .switch {
@@ -404,7 +430,6 @@ input:checked + .slider:before {
 .btn_subcycles{
 	padding-top: 10px;
 }
-
 </style>
 <body>
 
@@ -521,15 +546,10 @@ input:checked + .slider:before {
 <script src="https://nycdob.github.io/EssentialActiveConstruction/Leaflet.D3SvgOverlay-master/L.D3SvgOverlay.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/v/dt/dt-1.10.12/r-2.1.0/se-1.2.0/datatables.min.js"  type="text/javascript" charset="utf8" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script> -->
 <script src="https://nycdob.github.io/ActiveNB_A1enlargements/build/nv.d3.js"></script>
 <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 <script type="text/javascript" src="https://nycdob.github.io/ActiveNB_A1enlargements/keen/keen.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/rowgroup/1.1.1/js/dataTables.rowGroup.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/api/fnSortNeutral.js"></script>
 <script>
 $(document).ready(function(){
 	var today = new Date();
@@ -550,36 +570,37 @@ var map = L.map('map').setView([40.72215448921957, -73.98616799064006], 14);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
 
 
-var tooltipFacades = d3.select('#map').append('div')//var tooltip = d3.select('body').append('div')
-	.on('mouseover', function(d, i){
-		tooltipFacades.transition().duration(0);
-	})
-	.on('mouseout', function(d, i){
-		tooltipFacades.transition().delay(500).style('visibility', 'hidden');
-	})
-	.attr('class', 'tooltipFacades');
-	
-
-	
-var width = $("#map").width(),
+var tooltip = d3.select('#map').append('div').attr('class', 'tooltip');
+var 
+	width = $("#map").width(),
 	height = $("#map").height(),
 	points = [],
-	table_map = [],
-	filteredData,
 	latLngs = [],
 	pointsOverlaySQFT,
 	legendShed,
 	legendCD,
-	cat,
 	cdSheds,
 	sheds_CD,
 	previousColor,
-	radius;
-	
-onload = ready();
+	onload = ready();
 
 	
 function ready(){
+    let _lObj={
+    "Control Number":"Control Number",
+    "Cycle":"Cycle",
+    "Filing Status":"Current Filing Status",
+    "Filing Date":"Effective Filing Date",
+    "BIN":"Bin",
+    "Address":"House Number",
+    "Block":"Block",
+    "Lot":"Lot",
+    "SWARMP Completion Date":"SWARMP Completion Date",
+    "UNSAFE Completion Date":"Unsafe Completion Date",
+    "QEWI Name":"QEWI Name",
+    "QEWI Business Name":"QEWI Business Name",
+    "Active Facade Alteration":"ActiveAlteration",
+}
 
 	pointsOverlaySQFT = L.d3SvgOverlay(function(sel,proj){
 		var pointsUpdSQFT = sel.selectAll('circle').data(points);
@@ -615,60 +636,22 @@ function ready(){
 			})
 			
 			.on('click', function(d){
-
 				if(d3.select(this).style("fill-opacity") != 0){
-					tooltipFacades.style("visibility", "visible");
-					tooltipFacades.html(
-						'CONTROL NUMBER: ' + [d.controlNum] + '</br>' +
-						'CYCLE: ' + d.cycle + '</br>' +	
-						'FILING STATUS: ' + (d.filingStatus).toUpperCase() + '</br>' +	
-						'FILING DATE: ' + d.filingDate + '</br>' +
-						'BIN: ' + d.bin + '</br>' +								
-						'ADDRESS: '+ d.houseNum + ' ' + d.street + ', ' + d.Borough + '</br>' +
-						'BLOCK: ' + d.block + '</br>' +	
-						'LOT: ' + d.lot + '</br>' +	
-						'SWARMP COMPLETION DATE: ' + d.swarmpCompDate + '</br>' +
-						'UNSAFE COMPLETION DATE: ' + d.unsafeCompDate + '</br>' +
-						//'INSPECTION REQUEST DATE: ' + d.inspReqDate + '</br>' +
-						//'INSPECTION COMPLETE DATE: ' + d.inspCompleteDate + '</br>' +
-						//'PENDING INSPECTION: ' + pendVal(d.pending)
-                        'QEWI NAME: ' + d.qewi_name + '</br>' +
-                        'QEWI BUSINESS NAME: ' + d.qewi_business + '</br>' +
-						'ACTIVE FACADE ALTERATION: ' + d.activeAlteration + 
-			'<br><span class="fisphist">FISP History <span class="glyphicon glyphicon-new-window"></span></span>'			
-						
-                        //'<br><div class="fisphist" style="background-color:red;"> XX</div>'
-					)
-					if (d3.event.pageX > (width - 200)) {
-					   tooltipFacades.style("left", (d3.event.pageX - 350) + "px");
-					} else {
-					   tooltipFacades.style("left", (d3.event.pageX + 20) + "px")
-							.style("top", (d3.event.pageY -30) + "px");
-					}
-					if (d3.event.pageY > (height - 150)) {
-					   tooltipFacades.style("top", (d3.event.pageY -100) + "px");
-					} else {
-					   tooltipFacades.style("top", (d3.event.pageY -30) + "px");
-					}
+                    tooltip.html(dit(d["Lat"].concat(d["Lon"]),1));
+                    tooltip.style("visibility","visible");  
 				}
-    			document.querySelector(".fisphist").addEventListener('click', e=>  {
-			 window.open('https://nycdob.github.io/FISPHistory/fisphistory.html?'+d.Bin,"fisphist")})
 			})
 			.on("mouseover", function(d, i){
 				previousColor = d3.select(this).style("fill");
-				tooltipFacades.transition().duration(0); 
 				$(this).attr("style", "cursor: pointer; fill: #eef442; fill-opacity: 0.7;");			
 			})
 			.on("mouseout", function(d, i){			
 				d3.select(this).style("fill",previousColor);
 				d3.select(this).style( "fill-opacity",0.7);
-				return tooltipFacades.transition().delay(500).style("visibility", "hidden");
 			});
 		
 			pointsUpdSQFT.attr("stroke-width", 1 / proj.scale);
 			pointsUpdSQFT.attr("r", 5 /proj.scale);
-
-
 
 			var safeSlider = document.querySelector('input[id="chkSafe"]');
 				swarmpSlider = document.querySelector('input[id="chkSWARMP"]');
@@ -759,7 +742,55 @@ function ready(){
 		
 	});
 	
-	
+    const dit=(_pl,...args)=>{
+		if (!_pl) {tooltip.style("visibility","hidden");console.error("Invalid key");return ""};
+		if (!args[0] && !_pl.target.className.match(/_pr|_nx|_cl/)) {return};
+		let _dX=0;
+		let _l=[];
+		let doString = (_sObject,_dX, _l)=>{
+				let _xx='';
+				for (let [k,v] of Object.entries(_sObject) ) {
+							let _str=()=>{if (k.includes("Address")) {
+								return `${_l[_dX]["houseNum"].concat(" ",_l[_dX]["Street Name"],", ",_l[_dX]["Borough"] )}`;
+							}}
+					_xx+=`<div class="_fM3_0"><div>${k}:</div><div>${_str()||_l[_dX][`${v}`]}</div></div>`;
+				};
+				let truncor = _l[_dX]["Lat"].concat(_l[_dX]["Lon"]);
+				return `<div class="_tD"><div class="_nav">${_dX+1} of ${_l.length}</div><div><span class="_pr" title="Previous">&#11207;</span><span class="_nx" title="Next">&#11208;</span></div><div style="font-size:17px;" title="Close" class="material-symbols-outlined _cl">close</div></div><div class="_cycleD"><span class="_cor">${truncor}</span>${_xx}<div><a target="fisphistwin" class="fisphist" href="https://nycdob.github.io/FISPHistory/fisphistory.html?${_l[_dX]['Bin']}" title="Opens history in new window">FISP History <span class="material-symbols-outlined ">open_in_new</span></a></div></div>`;
+		}
+		let _sortD=(_ID) => {
+			return points.filter(_p=> _p["Lat"].concat(_p["Lon"]) ==_ID);
+		}
+		let _clr=()=>{
+			tooltip.style("visibility", "hidden");document.querySelector(".tooltip").innerHTML="";
+			document.querySelector(".tooltip").removeEventListener("click",dit);
+		}
+		if (!args[0]){
+			if (_pl.target.classList.contains("_cl")) {
+				_clr();return;
+			}
+			if (document.querySelector("._nav").textContent=="1 of 1"||(_pl.target.className!="_pr" && _pl.target.className!="_nx")){return};
+			let _key=document.querySelector("._cor").innerText;
+			_l=_sortD(_key);  if (!_l[0])   {_clr();console.error("Invalid key");return ""};
+			let _sN =parseInt(document.querySelector("._nav").textContent?.match(/(.*?) /));
+			if (!_sN| _sN<1||_sN>_l.length){_clr();console.error("Invalid key");return ""};
+			if (_pl.target.className=="_pr") {
+				if(_sN==1){_dX=_l.length-1} else {_dX=_sN-2;}
+			}
+			if (_pl.target.className=="_nx") {
+				if(_sN==_l.length){_dX=0} else {_dX=_sN;}
+			};
+			document.querySelector(".tooltip").innerHTML=doString(_lObj,_dX,_l);
+		} else {
+			_l=_sortD(_pl); 
+			if (!_l[0]) {_clr();console.error("Invalid key");return ""};
+			document.querySelector(".tooltip").removeEventListener("click",dit); 
+			document.querySelector(".tooltip").addEventListener("click",dit);
+			return doString(_lObj,_dX,_l);
+		};
+    }
+	//end const dit() definition
+
 	 
 		d3.csv("https://raw.githubusercontent.com/NYCDOB/data_store/master/facadeLL11_v3.csv",function(data){
 				points = data.filter(function(d) {
@@ -771,27 +802,19 @@ function ready(){
 				d.bin = [d.Bin];
 				d.houseNum = d["House Number"];
 				d.street = d["Street Name"];
-				d.Borough = [d.Borough];
 				d.block = [d.Block];
 				d.lot = [d.Lot];
 				d.swarmpCompDate = d["SWARMP Completion Date"];
 				d.unsafeCompDate = d["Unsafe Completion Date"];
-				//d.inspReqDate = d[" Inspection Request Date"];
-				//d.inspCompleteDate = d[" Inspection Complete Date"];
 				d.controlNum = d["Control Number"];
-				//d.filingStatus = d["CN Filing Status"];
 				d.filingStatus = d["Current Filing Status"];
 				d.cycle = [d.Cycle];
-				//d.filingDate = d["CN Filing Date"];
 				d.filingDate = d["Effective Filing Date"];
-				//d.pending = d[" Pending"];
                 d.qewi_name = d["QEWI Name"];
                 d.qewi_business = d["QEWI Business Name"];
-				d.activeAlteration = [d.ActiveAlteration];
 			return d;
 			});
 			
-
 			pointsOverlaySQFT.addTo(map);
 			
 			//d3.selectAll(".pointShed").style("display", "block");
@@ -807,7 +830,7 @@ function ready(){
 			
 			//TOTAL FACADE FILINGS
 			var totalSheds = points.map(function(d) { return d.controlNum });
-			console.log(totalSheds);
+			// console.log(totalSheds);
 			d3.select("#summary1_sheds").html(numberFormat(totalSheds.length));
 			
 			//BOROUGH			
@@ -818,7 +841,7 @@ function ready(){
 				})
 				.entries(points)
 				.sort(function(a, b){ return d3.descending(a.values, b.values); })
-				console.log(nestBoroSheds);
+				// console.log(nestBoroSheds);
 				shedBoroChart(nestBoroSheds);
 
 			//CURRENT STATUS			
@@ -829,7 +852,7 @@ function ready(){
 				})
 				.entries(points)
 				.sort(function(a, b){ return d3.descending(a.values, b.values); })
-				console.log(nestFilingStatus);
+				// console.log(nestFilingStatus);
 				statusChart(nestFilingStatus);
 				
 			/*	
@@ -884,7 +907,7 @@ function ready(){
 				})			
 				.entries(points)
 				//.sort(function(a, b){ return d3.descending(a.values, b.values); })//.slice(0,5);	
-			console.log(nestCycles);
+			// console.log(nestCycles);
 			cycleChart(nestCycles);
 
 			//SAFE SUB CYCLES
